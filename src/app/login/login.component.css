@@ -1,0 +1,26 @@
+.ver{
+    height: 100vh;
+}
+
+/*para el contenedor general*/
+.contenedor-form{
+    margin-top: 10px;
+    border: solid red;
+    width: 600px;
+    border-radius: 25px;
+    float: left;
+    margin-left: 30%;
+    margin-top: 5%;
+    padding-bottom: 50px;
+}
+/*para imagen de la institucion*/
+.contenedor-img{
+    height: 200px;
+    text-align: center;
+}
+
+/*para el color de los placeholder*/
+input::placeholder{
+    color: black;
+    text-align: center;
+}

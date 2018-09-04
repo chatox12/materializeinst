@@ -1,0 +1,15 @@
+.contenido{
+    top: -50px;
+}
+
+.position-nav{
+    margin-right: 2%;
+    display: block;
+}
+@media only screen and (max-width: 992px){
+
+    .right .hide-on-med-and-down .position-nav {
+    display: block;
+}
+
+}
