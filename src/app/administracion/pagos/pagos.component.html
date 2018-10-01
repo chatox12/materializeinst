@@ -1,3 +1,193 @@
-<p>
-  pagos works!
-</p>
+<div class="container">
+  <div class="col-md-12">
+      <br>
+      <button class="btn btn-success" (click)='function_mostar(1)'>
+        cobros disponibles
+      </button>
+      
+      <button class="btn btn-success" (click)='function_mostar(2)'>
+        Nuevo Cobro
+      </button>
+
+      <button class="btn btn-info" (click)='function_mostar(3)'>
+        Colegiatura
+      </button>
+  </div>  
+<br>
+
+
+
+    <div class="row col-md-12" *ngIf='cobro_disponible == true'>
+        <h5>cobros disponibles</h5>
+            <hr>
+        <table class="table">
+          <tr>
+            <th>Orden</th>
+            <th>nombre</th>
+            <th>cantidad cobro</th>
+            <th>Realizar Cobro</th>
+            <th>Eliminar</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>cobro 1</td>
+            <td>Q. 100.00</td>
+            <td><button class="btn btn-info" data-toggle="modal" data-target=".bd_cobros">cobrar</button></td>
+            <td><button class="btn btn-danger" data-toggle="modal" data-target=".bd_Eliminarcobros">Eliminar</button></td>
+          </tr>
+        </table>
+    </div>
+
+  <!--nuevo cobro-->  
+  <div class="row" *ngIf='nuevo_cobro == true'>
+    <div class="col-md-12">
+        <h5>Cobro Nuevo</h5>     
+        <hr>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Nombre</span>
+          <input type="text" class="form-control" placeholder="Ingrese el Nombre del cobro" aria-describedby="basic-addon1">
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-addon">Q.</span>
+          <input type="text" class="form-control">
+        </div>
+        <br>
+        <div class="alert alert-danger" role="alert">
+            <strong>Error. </strong> Algo a Salido mal
+        </div>
+        <button class="btn btn-success">
+          Agregar Cobro
+        </button>
+    </div>
+    <br><br>  
+  </div>
+
+
+    <!--cobro de colegiatura-->  
+  <div class="row" *ngIf ='pago_colegiatura == true'>
+    <div class="col-md-12">
+        <h5>Cobro Colegiatura</h5>
+        <hr>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Buscar Alumno</span>
+          <input type="text" class="form-control" placeholder="Ingrese el Nombre del Alumno" aria-describedby="basic-addon1">
+        </div>
+        <div class="alert alert-danger" role="alert">
+            <strong>Error. </strong> no hay nombres
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">Q.</span>
+          <input type="text" class="form-control" placeholder="Seleccionar de la tabla cobros">
+        </div>
+          <br>
+        <div class="input-group">
+          <span class="input-group-addon">Mes</span>
+          <select name="" id="" class="form-control">
+            <option value="">Seleccione un Mes</option>
+            <option value="">mes 1</option>
+            <option value="">mes 2</option>
+            <option value="">mes 3</option>
+            <option value="">mes 4</option>
+            <option value="">mes 5</option>
+            <option value="">mes 6</option>
+            <option value="">mes 7</option>
+            <option value="">mes 8</option>
+            <option value="">mes 9</option>
+            <option value="">mes 10</option>
+          </select>
+        </div>
+        <br>
+        <button class="btn btn-success">
+          Agregar Cobro
+        </button>
+        
+    </div>
+  </div>
+<br><br>
+</div>
+
+
+
+
+
+
+
+<!--Modal para cobros-->
+<div class="modal fade bd_cobros" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Realizar Cobros</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Buscar Alumno</span>
+                <input type="text" class="form-control" placeholder="Ingrese el Nombre del Alumno" aria-describedby="basic-addon1">
+              </div>
+              <div class="alert alert-danger" role="alert">
+                  <strong>Error. </strong> no hay nombres
+              </div>
+              
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Nombre del Cobro</span>
+                <input type="text" class="form-control" placeholder="Nombre del cobro" aria-describedby="basic-addon1" disabled>
+              </div>
+                <br>
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Cantidad Cobro</span>
+                <input type="text" class="form-control" placeholder="100.00" aria-describedby="basic-addon1" disabled>
+              </div>
+              <br>
+              <button class="btn btn-success">
+                Realizar cobro
+              </button>
+      
+              <button class="btn btn-danger" data-dismiss="modal">
+                cancelar
+              </button>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!---Eliminar Cobros-->
+<div class="modal fade bd_Eliminarcobros" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Eliminar Cobros</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">                
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1">Nombre del Cobro</span>
+                  <input type="text" class="form-control" placeholder="Nombre del cobro" aria-describedby="basic-addon1" disabled>
+                </div>
+                  <br>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1">Cantidad Cobro</span>
+                  <input type="text" class="form-control" placeholder="100.00" aria-describedby="basic-addon1" disabled>
+                </div>
+                <br>
+                <button class="btn btn-success">
+                  Eliminar
+                </button>
+        
+                <button class="btn btn-danger" data-dismiss="modal">
+                  cancelar
+                </button>
+          </div>
+  
+      </div>
+    </div>
+  </div>

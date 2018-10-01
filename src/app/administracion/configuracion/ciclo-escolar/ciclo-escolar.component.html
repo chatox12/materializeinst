@@ -1,3 +1,82 @@
-<p>
-  ciclo-escolar works!
-</p>
+<div class="container">
+  <button class="btn btn-success" (click)="function_view_components(1)">
+    Ver todos los ciclos escolares
+  </button>
+
+  <button class="btn btn-success" (click)="function_view_components(2)">
+    Nuevo Ciclo
+  </button>
+<br> <br>
+
+
+  <div *ngIf='Ver_todo == true'>
+    <br>
+    <h5><b>Listado de Ciclo</b></h5>
+    <table id="example" class="display" width="100%">
+      <thead>
+        <tr>
+          <th>Orden</th>
+          <th>Nombre</th>
+          <th >Actualizar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cEscolar of load_data.ciclo">
+          <td>{{ cEscolar.id_ciclo}}</td>
+          <td> {{ cEscolar.Nombre}}</td>
+          <td align="center">  <button class="btn btn-success" data-toggle="modal" data-target=".Actualizar" (click)='function_datos(cEscolar.id_ciclo,cEscolar.Nombre)'><i class="fa fa-edit"></i> Editar</button> </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+  <div *ngIf='new_ciclo == true'>
+    <form #save='ngForm' (ngSubmit)='function_save(save)'>
+        <div class="col-md-6">
+            <label for=""><b>Nombre</b></label>
+            <input type="text" class="form-control" name="nombre" ngModel required />
+          </div>
+          <br>
+          <button class="btn btn-success" type="submit" (disable)='form.invalid'>
+            Agregar Ciclo
+          </button>
+      
+          <button class="btn btn-danger">  
+            Cancelar
+          </button>
+    </form>
+    
+  </div>
+
+</div>
+<!--
+  para modal
+-->
+<div class="modal fade Actualizar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Actualizar</h4>
+        <button type="button" class="close pull-right" data-dismiss="modal"  aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form action="" #actualizar='ngForm' (ngSubmit)='function_update(actualizar)'>
+            <label for="">nombre</label>
+            <input type="text" class="form-control" value={{nombre}} name="nombre" required ngModel>
+<br><br>
+            <button class=" btn btn-success">Actualizar</button> 
+            
+            <button class="btn btn-danger" aria-label="Close" data-dismiss="modal" >Cancelar</button>
+          
+          </form>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

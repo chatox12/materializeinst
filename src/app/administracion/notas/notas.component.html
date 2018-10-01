@@ -1,3 +1,90 @@
-<p>
-  notas works!
-</p>
+<div class="container">
+  <div class="row">
+    <!--Seleccionar Grado-->
+    <div class="col-md-4">
+      <select class="form-control" (change)='Fuction_seleccion_grado(valor.value)' #valor>
+        <option value="0">Seleccione un Grado</option>
+        <option value="1">Primero</option>
+        <option value="2">Segundo</option>
+        <option value="3">Tercero</option>
+      </select>
+    </div>
+      
+      <!--Seleccionar Seccion-->
+    <div class="col-md-4">
+      <select class="form-control" (change)='Function_seleccion_seccion(valor_seccion.value)' #valor_seccion>
+        <option value="0">Seleccione una Seccion</option>
+        <option value="1">A</option>
+        <option value="2">B</option>
+      </select>
+    </div>
+
+  </div>
+<br>
+    <div class="alert alert-danger" role="alert" *ngIf='Seleccion_seccion == false &&  Seleccion_grado == false '>
+      <strong>Antes de Iniciar</strong> Seleccione un Grado y una seccion
+    </div>
+<br> 
+  <div *ngIf='Seleccion_grado == true && Seleccion_seccion == true'>
+    <button class="btn btn-success" (click)='Mostrar_inicio(true)'>
+      Agregar Notas
+    </button>
+    <br><br>
+    <!--Mostrar Notas-->
+    <div *ngIf='seleccion == false'>
+      <table class="table">
+        <tr>
+          <th>orden</th>
+          <th>nombre</th>
+          <th>unidad 1</th>
+          <th>promedio</th>
+        </tr>
+
+        <tr>
+          <td>1</td>
+          <td>uno</td>
+          <td>1</td>
+          <td>10</td>
+        </tr>
+      </table>
+    </div>
+
+<!--Agregar Nueva nota y unidad-->
+    <div *ngIf='seleccion == true'>
+      <h5><b>Agregando notas</b></h5>
+      <hr>
+      <div class="col-md-6">
+        <select class="form-control">
+          <option value="">Seleccione la unidad</option>
+          <option value="">Primera</option>
+          <option value="">Segunda</option>
+          <option value="">Tercera</option>
+          <option value="">Cuarta</option>
+        </select>
+      </div>
+    <br><br>        
+      <table class="table">
+        <tr>
+          <th>No. Orden</th>
+          <th>Nombre de alumno</th>
+          <th>Calificacion</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Nombre de alumno</td>
+          <td>0</td>
+        </tr>
+      </table>
+
+      <button class="btn btn-success">
+        agregar notas
+      </button>
+      <button class="btn btn-danger" (click)='Mostrar_inicio(false)'>
+        Cancelar
+      </button>
+    </div>
+
+  </div>
+
+  
+</div>

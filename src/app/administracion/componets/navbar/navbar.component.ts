@@ -10,10 +10,9 @@ declare var $;
 export class NavbarComponent implements OnInit {
 
   constructor() { 
-    $(document).ready(function(){
-      $('.nav-trigger').dropdown();
+    $('.nav-link').on('click',function() {
+      $('.navbar-collapse').collapse('hide');
     });
-  
   }
 
   ngOnInit() {

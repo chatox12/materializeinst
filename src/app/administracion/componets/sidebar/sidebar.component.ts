@@ -10,17 +10,6 @@ declare var $;
 export class SidebarComponent implements OnInit {
 
   constructor() { 
-    
-    //para el llamado de sidenav
-    $(document).ready(function(){
-      $('.sidenav').sidenav();
-    });
-
-    //para el dropdown
-    $(document).ready(function(){
-      $('.collapsible').collapsible();
-    });
-       
   }
 
   ngOnInit() {

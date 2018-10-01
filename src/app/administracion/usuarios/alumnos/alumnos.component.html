@@ -1,3 +1,240 @@
-<p>
-  alumnos works!
-</p>
+<div class="container">
+
+    <button class="btn btn-info" (click)='function_mostar_div(1)'>
+      Inscripcion 
+    </button>
+    <button class="btn btn-success" (click)='function_mostar_div(2)'>
+      Listado de Alumnos
+    </button>
+
+    <div class="row" *ngIf='mostrar_inscripcion == true'>
+      <div class="col-md-12">
+          <br> <br>
+          <h5><b>Datos del Alumno</b></h5>
+          <hr>
+      </div>
+        
+<!--Para Nombres-->
+          <div class="col-md-4">
+            <label><b>Primer Nombre</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label><b>Segundo Nombre</b></label>
+            <input type="text" class="form-control">
+          </div>
+        
+          <div class="col-md-4">
+            <label><b>Tercer Nombre</b></label>
+            <input type="text" class="form-control">
+          </div>
+          <br>
+<!--Para Apellidos-->
+          <div class="col-md-4">
+            <label><b>Primer Apellido</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label><b>Segundo Apellido</b></label>
+            <input type="text" class="form-control">
+          </div>
+        
+          <div class="col-md-4">
+            <label><b>Tercer Apellido</b></label>
+            <input type="text" class="form-control">
+          </div>
+<!--Edad--->
+          <div class="col-md-4">
+            <label><b>Edad</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <!--fecha de Nacimiento--->
+          <div class="col-md-4">
+            <label><b>Fecha de Nacimiento</b></label>
+            <input type="date" class="form-control">
+          </div>
+
+          <!--Fecha de Inscripcion--->
+          <div class="col-md-4">
+            <label><b>Fecha de Inscripcion</b></label>
+            <input type="date" class="form-control">
+          </div>
+
+          <!--Codigo Mineduc--->
+          <div class="col-md-4">
+            <label><b>Codigo Mineduc</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <!--Grado--->
+          <div class="col-md-4">
+            <label><b>Grado</b></label>
+            <select class="form-control">
+              <option value="">Seleccione el grado</option>
+              <option value="">Primero</option>
+              <option value="">Segundo</option>
+              <option value="">Tercero</option>
+            </select>
+          </div>
+
+          <!--Seccion--->
+          <div class="col-md-4">
+            <label><b>Seccion</b></label>
+            <select class="form-control">
+              <option value="">Seleccione el grado</option>
+              <option value="">A</option>
+              <option value="">B</option>
+            </select>
+          </div>
+          <!--para el ciclo escolar-->
+          <!--Seleccionar el ultimo valor de la base de datos-->
+          <div class="col-md-4">
+            <label><b>Ciclo Escolar</b></label>
+            <input class="form-control" type="text" value="2018" disabled>
+          </div>
+<!--Para Representante-->
+      <div class="col-md-12">
+          <br>
+          <h5><b>Datos del Encargado</b></h5>
+          <hr>
+      </div>
+        
+<!--Para Nombres-->
+          <div class="col-md-4">
+            <label><b>Primer Nombre</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label><b>Segundo Nombre</b></label>
+            <input type="text" class="form-control">
+          </div>
+        
+          <div class="col-md-4">
+            <label><b>Tercer Nombre</b></label>
+            <input type="text" class="form-control">
+          </div>
+          <br>
+<!--Para Apellidos-->
+          <div class="col-md-4">
+            <label><b>Primer Apellido</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label><b>Segundo Apellido</b></label>
+            <input type="text" class="form-control">
+          </div>
+        
+          <div class="col-md-4">
+            <label><b>Tercer Apellido</b></label>
+            <input type="text" class="form-control">
+          </div>
+          
+          <!--Edad--->
+          <div class="col-md-4">
+            <label><b>Edad</b></label>
+            <input type="text" class="form-control">
+          </div>
+          
+          <!--DPI--->
+          <div class="col-md-4">
+            <label><b>No. DPI</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <!--Profesion--->
+          <div class="col-md-4">
+            <label><b>Profesion</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <!--Direccion--->
+          <div class="col-md-4">
+            <label><b>Direccion</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <!--Telefono--->
+          <div class="col-md-4">
+            <label><b>Telefono</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="col-md-12">
+              <br>
+              <button class="btn btn-success">Inscribir</button>
+          </div>  
+
+
+    </div>
+    
+    <br>
+</div>
+
+<div class="container" *ngIf='mostrar_listado_alumno == true'>
+<div class="row">
+  <div class="col-md-2">
+    <button class="btn btn-success">
+      ver todos
+    </button>
+  </div>
+
+  <div class="col-md-4">
+    <label><b>Mostar datos por grado</b></label>
+    <select class="form-control">
+          <option value="">Seleccione un grado</option>
+          <option value="">primero</option>
+          <option value="">segundo</option>
+          <option value="">tercero</option>
+    </select>
+  </div>
+
+  <!--Si se selecciona un grado se mostrara las secciones-->
+  <div class="col-md-4">
+    <label for=""><b>Filtrar por seccion</b></label>
+    <select class="form-control">
+      <option value="">Seleccione una seccion</option>
+      <option value="">A</option>
+      <option value="">B</option>
+    </select>
+  </div>
+
+</div>
+
+
+<br>
+<br>
+<table class="table">
+    <tr>
+        <th>No.</th>
+        <th>Nombre</th>
+        <th>Grado</th>
+        <th>Seccion</th>
+        <th>Encargado</th>
+        <th>Telefono</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Nombre estudiante</td>
+      <td>Primero</td>
+      <td>A</td>
+      <td>Nombre de encargado</td>
+      <td>12345678</td>
+    </tr>
+    
+    <tr>
+      <td>1</td>
+      <td>Nombre estudiante</td>
+      <td>Primero</td>
+      <td>A</td>
+      <td>Nombre de encargado</td>
+      <td>12345678</td>
+    </tr>
+  </table>
+</div>
+
+<br><br>

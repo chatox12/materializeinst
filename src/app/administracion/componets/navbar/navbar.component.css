@@ -1,15 +1,8 @@
-.contenido{
-    top: -50px;
+.usuario_left{
+    margin-left: 300px;
 }
-
-.position-nav{
-    margin-right: 2%;
-    display: block;
-}
-@media only screen and (max-width: 992px){
-
-    .right .hide-on-med-and-down .position-nav {
-    display: block;
-}
-
+@media only screen and (max-width: 990px) {
+    .usuario_left{
+        margin-left: 0px;
+    }
 }

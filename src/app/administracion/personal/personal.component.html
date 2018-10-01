@@ -1,0 +1,118 @@
+<div class="container">
+  <button class="btn btn-success">
+    Agregar Personal
+  </button>
+  <button class="btn btn-success">
+    Ver todo el personal
+  </button>
+  <button class="btn btn-success">
+    profesores
+  </button>
+
+<br>
+<br>
+
+  <form>
+    <div class="row">
+        <!--Para Nombres-->
+        <div class="col-md-4">
+            <label><b>Primer Nombre</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label><b>Segundo Nombre</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label><b>Tercer Nombre</b></label>
+            <input type="text" class="form-control">
+          </div>
+          <br>
+        <!--Para Apellidos-->
+          <div class="col-md-4">
+            <label><b>Primer Apellido</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label><b>Segundo Apellido</b></label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label><b>Tercer Apellido</b></label>
+            <input type="text" class="form-control">
+          </div>
+        <!--Edad--->
+          <div class="col-md-4">
+            <label><b>Edad</b></label>
+            <input type="text" class="form-control">
+          </div>
+        <!--Telefono Celular--->
+          <div class="col-md-4">
+            <label><b>Edad</b></label>
+            <input type="text" class="form-control">
+          </div>
+        <!--Telefono Domiciliar--->
+          <div class="col-md-4">
+            <label><b>Edad</b></label>
+            <input type="text" class="form-control">
+          </div>
+        <!--Telefono Domiciliar--->
+          <div class="col-md-4">
+            <label><b>Estado</b></label><br>
+            <select name="" id="" class="form-control">
+              <option value="0">Seleccione</option>
+              <option value="1">Activo</option>
+              <option value="2">Inactivo</option>
+            </select>
+          </div>
+        <!--Telefono Domiciliar--->
+          <div class="col-md-4">
+            <label><b>Cargo</b></label><br>
+            <select name="" id="" class="form-control">
+              <option value="0">Seleccione</option>
+              <option value="1">Activo</option>
+              <option value="2">Inactivo</option>
+            </select>
+          </div>
+          
+
+
+    </div>
+
+    
+  </form>
+
+  <!--observar a todo el personal disponible siempre y cuanto este este activo-->
+  <div> 
+    <table class="table">
+      <tr>
+        <th>
+          Orden
+        </th>
+        <th>
+          Nombre
+        </th>
+        <th>Cargo</th>
+        <th>Actualizar</th>
+        <th>Desactivar</th>
+      </tr>
+      <tr>
+        <td>Orden</td>
+        <td>Nombre</td>
+        <td>Cargo 1</td>
+        <td><button class="btn btn-success">Actualizar</button></td>
+        <td><button class="btn btn-danger">Desactivar</button></td>
+      </tr>
+    </table>
+  </div>
+
+  <!--Solamente Personal Docente el cual se le asignara el curso respectivo-->
+  <div >
+    <button class="btn btn-success">Agregar catedratico a curso</button>
+
+  </div>
+</div>

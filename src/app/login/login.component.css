@@ -1,26 +1,44 @@
-.ver{
-    height: 100vh;
+.cover{
+
 }
+
+.contenedor-general{
+    height: 100vh;
+    background-image: url('../../assets/img/loginFont.jpg');
+    background-position: center;
+    background-attachment: fixed;
+}
+
 
 /*para el contenedor general*/
 .contenedor-form{
-    margin-top: 10px;
-    border: solid red;
-    width: 600px;
-    border-radius: 25px;
-    float: left;
-    margin-left: 30%;
-    margin-top: 5%;
-    padding-bottom: 50px;
+	position: absolute;
+	color: #fff;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 90%;
+	max-width: 300px;
+	box-shadow: 0 0 3px rgba(0,0,0,.7);
+	border-radius: 0 0 2px 2px;
+	background-color: rgba(0, 0, 0, .7);
 }
 /*para imagen de la institucion*/
 .contenedor-img{
-    height: 200px;
+    text-align: center;
+    font-size: 100px;
+}
+input{
+	color: #fff;
+}
+/*para el color de los placeholder*/
+input::placeholder{
     text-align: center;
 }
 
-/*para el color de los placeholder*/
-input::placeholder{
-    color: black;
-    text-align: center;
+.center_button{
+	margin-top: 10px;
+	margin-bottom: 20px;
+	float: left;
+	margin-left: 30%;
 }

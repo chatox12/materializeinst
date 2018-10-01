@@ -1,14 +1,44 @@
-<!-- Dropdown Structure -->
-<ul id="drop_nav" class="dropdown-content contenido">
-  <li><a href="#!">Perfil</a></li>
-  <li><a href="#!">Salir <i class="fa fa-power-off"></i></a></li>
-</ul>
-<nav>
-  <div class="nav-wrapper black">
-    <ul class="right hide-on-med-and-down position-nav">
-      <!-- Dropdown Trigger -->
-      <li><a class="nav-trigger" href="#!" data-target="drop_nav">Nombre de Usuario <i class="fa fa-arrow-down"></i></a></li>
-    </ul>
-  </div>
-</nav>
-       
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" [routerLink]="['./index']">Inicio</a>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li>
+              <a class="nav-link" [routerLink]="['./notas']" >Notas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['./pagos']" >Pagos</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['./alumnos']" >Alumnos</a>
+            </li>
+            
+            <li class="nav-item dropdown" >
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Configuracion
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" [routerLink]="['./ciclo']" >Ciclo Escolar</a>
+                <a class="dropdown-item" [routerLink]="['./personal']" >Personal</a>
+                <a class="dropdown-item" [routerLink]="['./cursos']">Cursos</a>
+                <a class="dropdown-item" [routerLink]="['./institucion']">Institucion</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown usuario_left">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Nombre de Usuario
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Manual</a>
+                <a class="dropdown-item" href="#">Salir</a>
+                </div>
+            </li>
+
+          </ul>
+        </div>
+      </nav>

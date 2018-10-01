@@ -1,3 +1,149 @@
-<p>
-  cursos works!
-</p>
+<div class="container">
+  <button class="btn btn-success" (click)='function_view_component(1)'>
+    Listar Cursos
+  </button>
+
+  <button class="btn btn-success" (click)='function_view_component(2)'>
+    agregar cursos a grados
+  </button>
+
+  <button class="btn btn-success" (click)='function_view_component(3)'>
+    Listar cursos por grados
+  </button>
+
+  <button class="btn btn-success" (click)='function_view_component(4)'>
+    nuevo curso
+  </button>
+<br><br>
+  <!--Agregar cursos a grados-->
+<div *ngIf='listar == true'>
+    <h5><b>Listar Cursos</b></h5>
+    <hr>
+    <table id="Cursos" class="display" width="100%">
+        <thead>
+          <tr>
+            <th>Orden</th>
+            <th>Nombre</th>
+            <th >Actualizar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let cursos of load_data.cursos'>
+            <td> {{cursos.id_curso}}</td>
+            <td> {{cursos.com_nombre}}</td>
+            <td align="center">  <button class="btn btn-success" data-toggle="modal" data-target=".Actualizar" (click)='function_datos(cursos.id_curso,cursos.com_nombre)'><i class="fa fa-edit"></i> Editar</button> </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+  <!--Agregar cursos a grados-->
+  <div class="row" *ngIf='agregar == true'>
+    <div class="col-md-12">
+        <h5><b>Agregar Cursos a Grado</b></h5>
+        <hr>
+    </div>
+<br><br>
+
+    <div class="col-md-4">
+      <select class="form-control" (change)='function_obtener_id_cursos_asi(curso.value)' #curso >
+        <option value=0>Seleccione un Curso</option>
+        <option *ngFor='let cursosl of load_data.cursos' value={{cursosl.id_curso}} class="form-control">{{cursosl.com_nombre}}</option>
+      </select>
+    </div>
+
+      <div class="col-md-4">
+        <select class="form-control" (change)='function_obtener_id_grado_asi(grado.value)' #grado>
+          <option value=0>Seleccione un Grado</option>
+          <option value=1>Grado 1</option>
+          <option value=2>Grado 2</option>
+          <option value=3>Grado 3</option>
+        </select>
+      </div>
+
+      <button class="btn btn-success" (click)='funcion_save_cursos_to_grado()'>
+        Asignar Curso
+      </button>
+  </div>
+
+<!--para ver cursos por grado seleccionado-->
+  <div *ngIf='porgrado == true'>
+    <h5><b>  Visualizando cursos por grado</b></h5>
+    <select class="form-control col-md-4" (change)='function_seleccion_curso_view(valor.value)' #valor >
+      <option value="0">Seleccione el Grado</option>
+      <option value=1>Grado 1</option>
+      <option value=2>Grado 2</option>
+      <option value=3>Grado 3</option>
+      <option value=""></option>
+    </select>
+<br>
+    <table class="table" *ngIf='Seleccionar_grado == true'>
+      <thead>
+        <tr>
+          <th>Orden</th>
+          <th>Nombre</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let cursos of load_data_cursos.cursos;'>
+          <td> No. Orden</td>
+          <td> {{cursos.com_nombre}}</td>
+          <td><button class="btn btn-danger">Eliminar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div *ngIf='nuevo == true'>
+    <h5><b>Agregar Nuevo curso</b></h5>
+    <hr>
+    <form #nuevo='ngForm' (ngSubmit)='function_save(nuevo)'>
+      <div class="col-md-6">
+        <label><b>Nombre del curso</b></label>
+        <input type="text" class="form-control"  placeholder="Ingrese el nombre del curso" name="nombre" ngModel  required>
+      </div>
+      <br>
+      <button class="btn btn-success">
+        Agregar Curso
+      </button>  
+    </form>
+    
+  </div>
+<br><br>
+</div>
+
+
+<!--
+  para Actualizar
+-->
+<!--
+  para modal
+-->
+<div class="modal fade Actualizar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Actualizar</h4>
+          <button type="button" class="close pull-right" data-dismiss="modal"  aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="" #actualizar='ngForm' (ngSubmit)='function_update(actualizar)'>
+              <label for="">Nombre del Curso</label>
+              <input type="text" class="form-control" value={{nombre}} name="nombre" required ngModel>
+  <br><br>
+              <button class=" btn btn-success">Actualizar</button> 
+              
+              <button class="btn btn-danger" aria-label="Close" data-dismiss="modal" >Cancelar</button>
+            
+            </form>
+  
+        </div>
+  
+  
+      </div>
+    </div>
+  </div>

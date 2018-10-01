@@ -6,10 +6,7 @@ const routes: Routes = [
     {path: '', loadChildren: './login/login.module#LoginModule'},
     {path: 'login', loadChildren: './login/login.module#LoginModule'},
     {path: 'admin', loadChildren: './administracion/administracion.module#AdministracionModule'},
-    {path: 'catedratico', loadChildren: './profesores/profesores.module#ProfesoresModule'},
-    {path: 'alumno', loadChildren: '.alumnos/alumnos.module#AlumnosModule'},
-
-
+    {path: 'alumno', loadChildren: './usuario-alumno/usuario-alumno.module#UsuarioAlumnoModule'}
 ];
 
 @NgModule({
