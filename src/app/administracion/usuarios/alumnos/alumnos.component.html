@@ -1,11 +1,13 @@
 <div class="container">
 
-    <button class="btn btn-info" (click)='function_mostar_div(1)'>
+    <button class="btn btn-success" (click)='function_mostar_div(2)'>
+        Listado de Alumnos
+      </button>
+  
+      <button class="btn btn-info" (click)='function_mostar_div(1)'>
       Inscripcion 
     </button>
-    <button class="btn btn-success" (click)='function_mostar_div(2)'>
-      Listado de Alumnos
-    </button>
+
 
     <div class="row" *ngIf='mostrar_inscripcion == true'>
       <div class="col-md-12">
@@ -14,160 +16,170 @@
           <hr>
       </div>
         
-<!--Para Nombres-->
-          <div class="col-md-4">
-            <label><b>Primer Nombre</b></label>
-            <input type="text" class="form-control">
-          </div>
 
-          <div class="col-md-4">
-            <label><b>Segundo Nombre</b></label>
-            <input type="text" class="form-control">
-          </div>
-        
-          <div class="col-md-4">
-            <label><b>Tercer Nombre</b></label>
-            <input type="text" class="form-control">
-          </div>
-          <br>
-<!--Para Apellidos-->
-          <div class="col-md-4">
-            <label><b>Primer Apellido</b></label>
-            <input type="text" class="form-control">
-          </div>
-
-          <div class="col-md-4">
-            <label><b>Segundo Apellido</b></label>
-            <input type="text" class="form-control">
-          </div>
-        
-          <div class="col-md-4">
-            <label><b>Tercer Apellido</b></label>
-            <input type="text" class="form-control">
-          </div>
-<!--Edad--->
-          <div class="col-md-4">
-            <label><b>Edad</b></label>
-            <input type="text" class="form-control">
-          </div>
-
-          <!--fecha de Nacimiento--->
-          <div class="col-md-4">
-            <label><b>Fecha de Nacimiento</b></label>
-            <input type="date" class="form-control">
-          </div>
-
-          <!--Fecha de Inscripcion--->
-          <div class="col-md-4">
-            <label><b>Fecha de Inscripcion</b></label>
-            <input type="date" class="form-control">
-          </div>
-
-          <!--Codigo Mineduc--->
-          <div class="col-md-4">
-            <label><b>Codigo Mineduc</b></label>
-            <input type="text" class="form-control">
-          </div>
-
-          <!--Grado--->
-          <div class="col-md-4">
-            <label><b>Grado</b></label>
-            <select class="form-control">
-              <option value="">Seleccione el grado</option>
-              <option value="">Primero</option>
-              <option value="">Segundo</option>
-              <option value="">Tercero</option>
-            </select>
-          </div>
-
-          <!--Seccion--->
-          <div class="col-md-4">
-            <label><b>Seccion</b></label>
-            <select class="form-control">
-              <option value="">Seleccione el grado</option>
-              <option value="">A</option>
-              <option value="">B</option>
-            </select>
-          </div>
-          <!--para el ciclo escolar-->
-          <!--Seleccionar el ultimo valor de la base de datos-->
-          <div class="col-md-4">
-            <label><b>Ciclo Escolar</b></label>
-            <input class="form-control" type="text" value="2018" disabled>
-          </div>
-<!--Para Representante-->
-      <div class="col-md-12">
-          <br>
-          <h5><b>Datos del Encargado</b></h5>
-          <hr>
+      <form #add_matricula='ngForm' (ngSubmit)='function_save(add_matricula)'>
+      <div class="row">
+   <!--Para Nombres-->
+              <div class="col-md-4">
+                  <label><b>Primer Nombre</b></label>
+                  <input type="text" class="form-control" name="pnombrea" ngModel>
+                </div>
+      
+                <div class="col-md-4">
+                  <label><b>Segundo Nombre</b></label>
+                  <input type="text" class="form-control" name="snombrea" ngModel>
+                </div>
+              
+                <div class="col-md-4">
+                  <label><b>Tercer Nombre</b></label>
+                  <input type="text" class="form-control" name="tnombrea" ngModel>
+                </div>
+                <br>
+      <!--Para Apellidos-->
+                <div class="col-md-4">
+                  <label><b>Primer Apellido</b></label>
+                  <input type="text" class="form-control" name="papellidoa" ngModel>
+                </div>
+      
+                <div class="col-md-4">
+                  <label><b>Segundo Apellido</b></label>
+                  <input type="text" class="form-control" name="sapellidoa" ngModel>
+                </div>
+              
+                <div class="col-md-4">
+                  <label><b>Tercer Apellido</b></label>
+                  <input type="text" class="form-control" name="tapellidoa" ngModel>
+                </div>
+      <!--Edad--->
+                <div class="col-md-4">
+                  <label><b>Edad</b></label>
+                  <input type="text" class="form-control" name="edada" ngModel>
+                </div>
+      
+                <!--fecha de Nacimiento--->
+                <div class="col-md-4">
+                  <label><b>Fecha de Nacimiento</b></label>
+                  <input type="date" class="form-control" name="fnacimiento" ngModel>
+                </div>
+      
+                <!--Fecha de Inscripcion--->
+                <div class="col-md-4">
+                  <label><b>Fecha de Inscripcion</b></label>
+                  <input type="date" class="form-control" name="finscripcion" ngModel>
+                </div>
+      
+                <!--Codigo Mineduc--->
+                <div class="col-md-4">
+                  <label><b>Codigo Mineduc</b></label>
+                  <input type="text" class="form-control" name="codigomine" ngModel>
+                </div>
+      
+                <!--Grado--->
+                <div class="col-md-4">
+                  <label><b>Grado</b></label>
+                  <select class="form-control" (change)='function_seleccion_grado(val_select.value)' #val_select>
+                    <option value="0">Seleccione el grado</option>
+                    <option value="1">Primero</option>
+                    <option value="2">Segundo</option>
+                    <option value="3">Tercero</option>
+                  </select>
+                </div>
+      
+                <!--Seccion--->
+                <div class="col-md-4">
+                  <label><b>Seccion</b></label>
+                  <select class="form-control" (change)='function_seleccion_seccion(val_select.value)' #val_sele>
+                    <option value="0">Seleccione el grado</option>
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                  </select>
+                </div>
+                <!--para el ciclo escolar-->
+                <!--Seleccionar el ultimo valor de la base de datos-->
+                <div class="col-md-4">
+                  <label><b>Ciclo Escolar</b></label>
+                  <input class="form-control" type="text" value={{nombre_ciclo}} disabled>
+                </div>
+      <!--Para Representante-->
+            <div class="col-md-12">
+                <br>
+                <h5><b>Datos del Encargado</b></h5>
+                <hr>
+            </div>
+              
+      <!--Para Nombres-->
+                <div class="col-md-4">
+                  <label><b>Primer Nombre</b></label>
+                  <input type="text" class="form-control" name="pnombree" ngModel>
+                </div>
+      
+                <div class="col-md-4">
+                  <label><b>Segundo Nombre</b></label>
+                  <input type="text" class="form-control" name="snombree" ngModel> 
+                </div>
+              
+                <div class="col-md-4">
+                  <label><b>Tercer Nombre</b></label>
+                  <input type="text" class="form-control" name="tnombree" ngModel>
+                </div>
+                <br>
+      <!--Para Apellidos-->
+                <div class="col-md-4">
+                  <label><b>Primer Apellido</b></label>
+                  <input type="text" class="form-control" name="pnombree" ngModel>
+                </div>
+      
+                <div class="col-md-4">
+                  <label><b>Segundo Apellido</b></label>
+                  <input type="text" class="form-control" name="sapellidoe" ngModel>
+                </div>
+              
+                <div class="col-md-4">
+                  <label><b>Tercer Apellido</b></label>
+                  <input type="text" class="form-control" name="tapellidoe" ngModel>
+                </div>
+                
+                <!--Edad--->
+                <div class="col-md-4">
+                  <label><b>Edad</b></label>
+                  <input type="text" class="form-control" name="edade" ngModel>
+                </div>
+                
+                <!--DPI--->
+                <div class="col-md-4">
+                  <label><b>No. DPI</b></label>
+                  <input type="text" class="form-control" name="dpi" ngModel>
+                </div>
+      
+                <!--Profesion--->
+                <div class="col-md-4">
+                  <label><b>Profesion</b></label>
+                  <input type="text" class="form-control" name="profesion" ngModel>
+                </div>
+      
+                <!--Direccion--->
+                <div class="col-md-4">
+                  <label><b>Direccion</b></label>
+                  <input type="text" class="form-control" name="direccion" ngModel>
+                </div>
+      
+                <!--Telefono--->
+                <div class="col-md-4">
+                  <label><b>Telefono</b></label>
+                  <input type="text" class="form-control" name="telefono" ngModel>
+                </div>
+      
+                <div class="col-md-12">
+                    <br>
+                    <button class="btn btn-success">Inscribir</button>
+                    <button class="btn btn-danger">cancelar</button>
+                </div>  
+                
+      
       </div>
+    </form>     
         
-<!--Para Nombres-->
-          <div class="col-md-4">
-            <label><b>Primer Nombre</b></label>
-            <input type="text" class="form-control">
-          </div>
 
-          <div class="col-md-4">
-            <label><b>Segundo Nombre</b></label>
-            <input type="text" class="form-control">
-          </div>
-        
-          <div class="col-md-4">
-            <label><b>Tercer Nombre</b></label>
-            <input type="text" class="form-control">
-          </div>
-          <br>
-<!--Para Apellidos-->
-          <div class="col-md-4">
-            <label><b>Primer Apellido</b></label>
-            <input type="text" class="form-control">
-          </div>
-
-          <div class="col-md-4">
-            <label><b>Segundo Apellido</b></label>
-            <input type="text" class="form-control">
-          </div>
-        
-          <div class="col-md-4">
-            <label><b>Tercer Apellido</b></label>
-            <input type="text" class="form-control">
-          </div>
-          
-          <!--Edad--->
-          <div class="col-md-4">
-            <label><b>Edad</b></label>
-            <input type="text" class="form-control">
-          </div>
-          
-          <!--DPI--->
-          <div class="col-md-4">
-            <label><b>No. DPI</b></label>
-            <input type="text" class="form-control">
-          </div>
-
-          <!--Profesion--->
-          <div class="col-md-4">
-            <label><b>Profesion</b></label>
-            <input type="text" class="form-control">
-          </div>
-
-          <!--Direccion--->
-          <div class="col-md-4">
-            <label><b>Direccion</b></label>
-            <input type="text" class="form-control">
-          </div>
-
-          <!--Telefono--->
-          <div class="col-md-4">
-            <label><b>Telefono</b></label>
-            <input type="text" class="form-control">
-          </div>
-
-          <div class="col-md-12">
-              <br>
-              <button class="btn btn-success">Inscribir</button>
-          </div>  
 
 
     </div>
@@ -186,10 +198,10 @@
   <div class="col-md-4">
     <label><b>Mostar datos por grado</b></label>
     <select class="form-control">
-          <option value="">Seleccione un grado</option>
-          <option value="">primero</option>
-          <option value="">segundo</option>
-          <option value="">tercero</option>
+          <option value="0">Seleccione un grado</option>
+          <option value="1">primero</option>
+          <option value="2">segundo</option>
+          <option value="3">tercero</option>
     </select>
   </div>
 
@@ -197,9 +209,9 @@
   <div class="col-md-4">
     <label for=""><b>Filtrar por seccion</b></label>
     <select class="form-control">
-      <option value="">Seleccione una seccion</option>
-      <option value="">A</option>
-      <option value="">B</option>
+      <option value="0">Seleccione una seccion</option>
+      <option value="1">A</option>
+      <option value="2">B</option>
     </select>
   </div>
 
@@ -208,32 +220,27 @@
 
 <br>
 <br>
-<table class="table">
+<table id="alumno" class="display" width="100%">
+  <thead>
     <tr>
-        <th>No.</th>
-        <th>Nombre</th>
-        <th>Grado</th>
-        <th>Seccion</th>
-        <th>Encargado</th>
-        <th>Telefono</th>
+      <th>No.</th>
+      <th>Nombre</th>
+      <th>Grado</th>
+      <th>Seccion</th>
+      <th>Encargado</th>
+      <th>Telefono</th>
     </tr>
-    <tr>
-      <td>1</td>
-      <td>Nombre estudiante</td>
-      <td>Primero</td>
-      <td>A</td>
-      <td>Nombre de encargado</td>
-      <td>12345678</td>
+  </thead>  
+  <tbody>
+    <tr *ngFor='let alumno of load_data.estudiante'>
+      <td width='1%'>1</td>
+      <td width='40%'>{{alumno.pnombrea}} {{alumno.snombrea}} {{alumno.tnombrea}} {{alumno.papellidoa}} {{alumno.sapellidoa}} {{alumno.tapellidoa}}</td>
+      <td width='5%'>{{alumno.grado}}</td>
+      <td width='5%'>{{alumno.seccion}}</td>
+      <td width='40%'>{{alumno.pnombree}} {{alumno.snombree}} {{alumno.tnombree}} {{alumno.papellidoe}} {{alumno.sapellidoe}} {{alumno.tapellidoe}}</td>
+      <td width='5%'>{{alumno.telefono}}</td>
     </tr>
-    
-    <tr>
-      <td>1</td>
-      <td>Nombre estudiante</td>
-      <td>Primero</td>
-      <td>A</td>
-      <td>Nombre de encargado</td>
-      <td>12345678</td>
-    </tr>
+  </tbody>
   </table>
 </div>
 
