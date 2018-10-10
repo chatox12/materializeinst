@@ -3,12 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { PagosRoutingModule } from './pagos-routing.module';
 import { PagosComponent }  from './pagos.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule(
     {
         imports:[
             CommonModule,
-            PagosRoutingModule
+            PagosRoutingModule,
+            FormsModule
         ],
         declarations:[
             PagosComponent

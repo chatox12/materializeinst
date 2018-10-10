@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 
 declare var $;
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'})
+}
 
 @Component({
   selector: 'app-pagos',
@@ -14,8 +20,12 @@ export class PagosComponent implements OnInit {
   nuevo_cobro:boolean = false;
   pago_colegiatura: boolean = false;
 
+  /**
+   * load api
+   */
+  load_api:string = 'http://localhost:90/api/';
 
-  constructor() {
+  constructor(private http:HttpClient) {
 
     $('#myModal').on('shown.bs.modal', function () {
       $('#myInput').focus()
@@ -55,7 +65,29 @@ export class PagosComponent implements OnInit {
     console.log('nuevo cobro');
   }
 
+  
 
+
+  function_save(forms: NgForm){
+
+    const parametros = new HttpParams()
+    .set('nombre', forms.value.pago)
+    .set('cantidad', forms.value.costo );
+
+console.log(parametros);
+
+    this.http.post(this.load_api+'pagos',parametros,httpOptions).subscribe(
+    data=>{
+      alert("Alumno Agregado Correctamente");
+    },
+    err =>{
+      console.log(err);
+    }
+ 
+    );
+
+
+  }
 
 
 
