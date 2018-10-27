@@ -24,10 +24,12 @@
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
+    "file-server": "^2.0.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "materialize-css": "^1.0.0-rc.2",
     "rxjs": "^5.5.6",
+    "xlsx": "^0.14.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
@@ -40,6 +42,8 @@
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
+    "jspdf": "^1.4.1",
+    "jspdf-autotable": "^2.3.5",
     "karma": "~2.0.0",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "^1.2.1",

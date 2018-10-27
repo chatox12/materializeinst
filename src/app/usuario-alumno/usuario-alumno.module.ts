@@ -1,11 +1,11 @@
-//componentes para angular 
+//componentes para angular
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-//componentes del routing 
+//componentes del routing
 import { UsuarioAlumnoRoutingModule } from './usuario-alumno-routing.module';
 import { UsuarioAlumnoComponent } from './usuario-alumno.component';
-
+import { AlumnoGuard } from '../alumno.guard';
 @NgModule(
     {
         imports: [
@@ -14,7 +14,8 @@ import { UsuarioAlumnoComponent } from './usuario-alumno.component';
         ],
         declarations:[
             UsuarioAlumnoComponent
-        ]
+        ],
+        providers: [AlumnoGuard ]
     }
 )
 

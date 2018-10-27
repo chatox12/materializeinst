@@ -1,4 +1,83 @@
 <div class="container">
-    <h1>informacion de la institucion</h1>
-    aun en construccion
+    <button class="btn btn-danger" (click)='function_pdf()'>
+        PDF
+    </button>
+
+<br><br>
+
+    <div class="data" *ngFor='let note of load_data.notas'>
+        <div class="datos_alumno">
+            <b>nombre:</b>  {{note.nombre}} <br>
+            <b>Grado:</b>  {{note.grado}} <br>
+            <b>seccion:</b>  {{note.seccion}} <br>
+            <div class="row">
+                    <div class="notas">
+                        <label for="">Nombre de curso</label>
+                    </div>
+                    <div class="unidad">
+                        <label for="">Unidad I</label>
+                    </div>
+                    <div class="unidad">
+                        <label for="">Unidad II</label>
+                    </div>
+                    <div class="unidad">
+                            <label for="">Unidad III</label>
+                    </div>
+                    <div class="unidad">
+                            <label for="">Unidad IV</label>
+                    </div>
+                    <div class="unidad">
+                            <label for="">promedio</label>
+                    </div>
+                </div>
+            <div *ngFor='let materia of note.materia'>
+
+                <div class="row">
+                <div class="notas">
+                    <label for="">{{materia.curso}}</label>
+                </div>
+                <div class="unidad">
+                    <label for="">{{materia.nota1}}</label>
+                </div>
+                <div class="unidad">
+                    <label for="">{{materia.nota2}}</label>
+                </div>
+                <div class="unidad">
+                    <label for="">{{materia.nota3}}</label>
+                </div>
+                <div class="unidad">
+                    <label for="">{{materia.nota4}}</label>
+                </div>      
+                <div class="unidad">
+                    <label for="">{{materia.promedio}}</label>
+                </div>             
+                </div>
+
+            </div>
+        </div> <br><br>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            modificar notas
+        </div>
+        <select name="" id="" class="form-control col-md-4" (change)='function_select_curso(curso.value)' #curso>
+            <option value="0">curso</option>
+            <option  *ngFor='let cursos of load_data_cursos.cursos' value={{cursos.id}}>{{cursos.com_nombre}}</option>
+        </select>
+
+        <select name="" id="" class="form-control col-md-4" (change)='function_select_unidad(unidad.value)' #unidad>
+            <option value="0">Seleccione la unidad</option>
+            <option value="1">I</option>
+            <option value="2">II</option>
+            <option value="3">III</option>
+            <option value="4">IV</option>
+        </select>
+        <input type="number" name="" id="" placeholder="ingrese la calificacion" #nota>
+        <button class="btn btn-success" (click)='functio_update(nota.value)'>
+                editar nota
+        </button>
+    </div>
+<br><br><br>
 </div>

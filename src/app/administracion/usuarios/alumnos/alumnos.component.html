@@ -3,11 +3,14 @@
     <button class="btn btn-success" (click)='function_mostar_div(2)'>
         Listado de Alumnos
       </button>
-  
-      <button class="btn btn-info" (click)='function_mostar_div(1)'>
-      Inscripcion 
-    </button>
 
+      <button class="btn btn-info" (click)='function_mostar_div(1)'>
+      Inscripcion
+      </button>
+
+    <button class="btn btn-success" (click)='function_mostar_div(3)'>
+      pagos realizados por alumnos
+    </button>
 
     <div class="row" *ngIf='mostrar_inscripcion == true'>
       <div class="col-md-12">
@@ -15,21 +18,29 @@
           <h5><b>Datos del Alumno</b></h5>
           <hr>
       </div>
-        
+
 
       <form #add_matricula='ngForm' (ngSubmit)='function_save(add_matricula)'>
       <div class="row">
    <!--Para Nombres-->
               <div class="col-md-4">
                   <label><b>Primer Nombre</b></label>
-                  <input type="text" class="form-control" name="pnombrea" ngModel>
+                  <div class="input-group">
+                      <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="pnombrea" ngModel>
+                  </div>
+
                 </div>
-      
+
                 <div class="col-md-4">
                   <label><b>Segundo Nombre</b></label>
-                  <input type="text" class="form-control" name="snombrea" ngModel>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="snombrea" ngModel>
+                  </div>
+
                 </div>
-              
+
                 <div class="col-md-4">
                   <label><b>Tercer Nombre</b></label>
                   <input type="text" class="form-control" name="tnombrea" ngModel>
@@ -38,67 +49,100 @@
       <!--Para Apellidos-->
                 <div class="col-md-4">
                   <label><b>Primer Apellido</b></label>
-                  <input type="text" class="form-control" name="papellidoa" ngModel>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="papellidoa" ngModel>
+                  </div>
+
                 </div>
-      
+
                 <div class="col-md-4">
                   <label><b>Segundo Apellido</b></label>
-                  <input type="text" class="form-control" name="sapellidoa" ngModel>
+                  <div class="input-group">
+                      <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="sapellidoa" ngModel>
+                  </div>
+
                 </div>
-              
-                <div class="col-md-4">
-                  <label><b>Tercer Apellido</b></label>
-                  <input type="text" class="form-control" name="tapellidoa" ngModel>
-                </div>
+
       <!--Edad--->
                 <div class="col-md-4">
                   <label><b>Edad</b></label>
-                  <input type="text" class="form-control" name="edada" ngModel>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="number" min="0" class="form-control" name="edada" ngModel>
+                  </div>
+
                 </div>
-      
+
                 <!--fecha de Nacimiento--->
                 <div class="col-md-4">
-                  <label><b>Fecha de Nacimiento</b></label>
-                  <input type="date" class="form-control" name="fnacimiento" ngModel>
+                  <label><b> * Fecha de Nacimiento</b></label>
+                      <input type="date" class="form-control" name="fnacimiento" ngModel>
+
+
                 </div>
-      
+
                 <!--Fecha de Inscripcion--->
                 <div class="col-md-4">
-                  <label><b>Fecha de Inscripcion</b></label>
-                  <input type="date" class="form-control" name="finscripcion" ngModel>
+                  <label><b>* Fecha de Inscripcion</b></label>
+                      <input type="date" class="form-control" name="finscripcion" valueAsDate ngModel>
                 </div>
-      
+
                 <!--Codigo Mineduc--->
                 <div class="col-md-4">
                   <label><b>Codigo Mineduc</b></label>
-                  <input type="text" class="form-control" name="codigomine" ngModel>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="codigomine" ngModel>
+                  </div>
+
                 </div>
-      
+
                 <!--Grado--->
                 <div class="col-md-4">
                   <label><b>Grado</b></label>
-                  <select class="form-control" (change)='function_seleccion_grado(val_select.value)' #val_select>
-                    <option value="0">Seleccione el grado</option>
-                    <option value="1">Primero</option>
-                    <option value="2">Segundo</option>
-                    <option value="3">Tercero</option>
-                  </select>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <select class="form-control" (change)='function_seleccion_grado(val_select.value)' #val_select>
+                          <option value="0">Seleccione el grado</option>
+                          <option value="1">Primero</option>
+                          <option value="2">Segundo</option>
+                          <option value="3">Tercero</option>
+                        </select>
+                  </div>
+
                 </div>
-      
+
                 <!--Seccion--->
                 <div class="col-md-4">
                   <label><b>Seccion</b></label>
-                  <select class="form-control" (change)='function_seleccion_seccion(val_select.value)' #val_sele>
-                    <option value="0">Seleccione el grado</option>
-                    <option value="1">A</option>
-                    <option value="2">B</option>
-                  </select>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <select class="form-control" (change)='function_seleccion_seccion(val_sele.value)' #val_sele>
+                          <option value="0">Seleccione el grado</option>
+                          <option value="1">A</option>
+                          <option value="2">B</option>
+                        </select>
+                  </div>
+
+                </div>
+                <div class="col-md-4">
+                  <label for="">Genero</label>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                    <select name="" id="" class="form-control" (change)='function_select_genero(select_genero.value)' #select_genero>
+                      <option value="0">Seleccione</option>
+                      <option value="1">Masculino</option>
+                      <option value="2">Femenino</option>
+                    </select>
+                  </div>
                 </div>
                 <!--para el ciclo escolar-->
                 <!--Seleccionar el ultimo valor de la base de datos-->
-                <div class="col-md-4">
+                <div class="col-md-4" >
                   <label><b>Ciclo Escolar</b></label>
-                  <input class="form-control" type="text" value={{nombre_ciclo}} disabled>
+                  <input class="form-control"  type="text" value={{nombre_ciclo}} disabled>
                 </div>
       <!--Para Representante-->
             <div class="col-md-12">
@@ -106,18 +150,26 @@
                 <h5><b>Datos del Encargado</b></h5>
                 <hr>
             </div>
-              
+
       <!--Para Nombres-->
                 <div class="col-md-4">
                   <label><b>Primer Nombre</b></label>
-                  <input type="text" class="form-control" name="pnombree" ngModel>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="pnombree" ngModel>
+                  </div>
+
                 </div>
-      
+
                 <div class="col-md-4">
                   <label><b>Segundo Nombre</b></label>
-                  <input type="text" class="form-control" name="snombree" ngModel> 
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="snombree" ngModel>
+                  </div>
+
                 </div>
-              
+
                 <div class="col-md-4">
                   <label><b>Tercer Nombre</b></label>
                   <input type="text" class="form-control" name="tnombree" ngModel>
@@ -126,122 +178,310 @@
       <!--Para Apellidos-->
                 <div class="col-md-4">
                   <label><b>Primer Apellido</b></label>
-                  <input type="text" class="form-control" name="pnombree" ngModel>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="papellidoe" ngModel>
+                  </div>
+
                 </div>
-      
+
                 <div class="col-md-4">
                   <label><b>Segundo Apellido</b></label>
-                  <input type="text" class="form-control" name="sapellidoe" ngModel>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="sapellidoe" ngModel>
+                  </div>
+
                 </div>
-              
+
                 <div class="col-md-4">
                   <label><b>Tercer Apellido</b></label>
                   <input type="text" class="form-control" name="tapellidoe" ngModel>
                 </div>
-                
+
                 <!--Edad--->
                 <div class="col-md-4">
                   <label><b>Edad</b></label>
-                  <input type="text" class="form-control" name="edade" ngModel>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="number" min="18" class="form-control" name="edade" ngModel>
+                  </div>
+
                 </div>
-                
+
                 <!--DPI--->
                 <div class="col-md-4">
                   <label><b>No. DPI</b></label>
-                  <input type="text" class="form-control" name="dpi" ngModel>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="dpi" ngModel>
+                  </div>
+
                 </div>
-      
+
                 <!--Profesion--->
                 <div class="col-md-4">
                   <label><b>Profesion</b></label>
-                  <input type="text" class="form-control" name="profesion" ngModel>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="profesion" ngModel>
+                  </div>
+
                 </div>
-      
+
                 <!--Direccion--->
                 <div class="col-md-4">
                   <label><b>Direccion</b></label>
-                  <input type="text" class="form-control" name="direccion" ngModel>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="direccion" ngModel>
+                  </div>
+
                 </div>
-      
+
                 <!--Telefono--->
                 <div class="col-md-4">
                   <label><b>Telefono</b></label>
-                  <input type="text" class="form-control" name="telefono" ngModel>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" name="telefono" ngModel>
+                  </div>
+
                 </div>
-      
+                <div class="col-md-4">
+                  <label for="">Parentesco</label>
+                  <div class="input-group">
+                    <span class="input-group-addon">*</span>
+                    <select class='form-control' name="" id="" (change) = 'function_select_parentesco(selectp.value)' #selectp >
+                      <option value="0">Seleccione</option>
+                      <option value="1">Papá</option>
+                      <option value="2">Mamá</option>
+                      <option value="3">Hermano</option>
+                      <option value="4">Hermana</option>
+                      <option value="5">Tio</option>
+                      <option value="6">Tia</option>
+                      <option value="7">Abuelo</option>
+                      <option value="8">Abuela</option>
+                      <option value="9">Otro</option>
+                    </select>
+                  </div>
+                </div>
+      <br><br><br><br>
+                <div class="col-md-12 alert alert-danger" role="alert" *ngIf='bool_save == true' >
+                    los campos * son necesarios
+                  </div>
+
                 <div class="col-md-12">
                     <br>
-                    <button class="btn btn-success">Inscribir</button>
-                    <button class="btn btn-danger">cancelar</button>
-                </div>  
-                
-      
+                    <button class="btn btn-success" *ngIf='bool_imprimir_boleta == false'>Inscribir</button>
+
+                    <button class="btn btn-danger" *ngIf='bool_imprimir_boleta == false'>cancelar</button>
+                </div>
+
+
       </div>
-    </form>     
-        
+    </form>
+<button class="btn btn-success" *ngIf='bool_imprimir_boleta == true' (click)='function_boleta_print()'>imprimir</button>
 
 
 
     </div>
-    
+
     <br>
 </div>
 
-<div class="container" *ngIf='mostrar_listado_alumno == true'>
+<!--para los alumnos-->
+<div class="margin" *ngIf='mostrar_listado_alumno == true'>
+  <br><br>
+  <button (click)='imprimir_alumnos()'>imprimir alumnos</button> <button (click)='function_excel()'>Generar Excel</button>
+  <br>
 <div class="row">
-  <div class="col-md-2">
-    <button class="btn btn-success">
-      ver todos
-    </button>
-  </div>
-
-  <div class="col-md-4">
-    <label><b>Mostar datos por grado</b></label>
-    <select class="form-control">
-          <option value="0">Seleccione un grado</option>
-          <option value="1">primero</option>
-          <option value="2">segundo</option>
-          <option value="3">tercero</option>
-    </select>
-  </div>
-
-  <!--Si se selecciona un grado se mostrara las secciones-->
-  <div class="col-md-4">
-    <label for=""><b>Filtrar por seccion</b></label>
-    <select class="form-control">
-      <option value="0">Seleccione una seccion</option>
-      <option value="1">A</option>
-      <option value="2">B</option>
-    </select>
-  </div>
 
 </div>
-
-
-<br>
 <br>
 <table id="alumno" class="display" width="100%">
   <thead>
     <tr>
-      <th>No.</th>
-      <th>Nombre</th>
+      <th width='1%'>No.</th>
+      <th width='35%'>Nombre</th>
       <th>Grado</th>
       <th>Seccion</th>
+      <th>codigo mineduc</th>
       <th>Encargado</th>
       <th>Telefono</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
-  </thead>  
+  </thead>
   <tbody>
     <tr *ngFor='let alumno of load_data.estudiante'>
-      <td width='1%'>1</td>
-      <td width='40%'>{{alumno.pnombrea}} {{alumno.snombrea}} {{alumno.tnombrea}} {{alumno.papellidoa}} {{alumno.sapellidoa}} {{alumno.tapellidoa}}</td>
-      <td width='5%'>{{alumno.grado}}</td>
-      <td width='5%'>{{alumno.seccion}}</td>
-      <td width='40%'>{{alumno.pnombree}} {{alumno.snombree}} {{alumno.tnombree}} {{alumno.papellidoe}} {{alumno.sapellidoe}} {{alumno.tapellidoe}}</td>
-      <td width='5%'>{{alumno.telefono}}</td>
+      <td >1</td>
+      <td >{{alumno.estudiante}}</td>
+      <td >{{alumno.grado}}</td>
+      <td >{{alumno.seccion}}</td>
+      <td>{{alumno.mineduc}}</td>
+      <td >{{alumno.Encargado}}</td>
+      <td >{{alumno.telefono}}</td>
+      <td><button class="btn btn-success" data-toggle="modal" data-target=".bd_cobros" (click)='function_obtener_id(alumno.id)'><i class="fa fa-money"></i></button></td>
+      <td><button class="btn btn-danger" data-toggle="modal" data-target=".bd_colegiatura" (click)='function_obtener_id(alumno.id)'><i class="fa fa-dollar"></i></button></td>
+      <td><a [routerLink]="['/admin/notas',alumno.id]"> <button type="button" name="button" class="btn btn-info">notas</button> </a> </td>
     </tr>
   </tbody>
   </table>
 </div>
 
+
+<!--para los alumnos con pagos-->
+<div class="margin" *ngIf='bool_cargar_datos == true'>
+  <br><br>
+  <select name="" id="" class="form-control col-md-3" (change)="function_select_pago_realizado(selectPagos.value)" #selectPagos >
+    <option value="0">Seleccione un pago</option>
+    <option *ngFor='let pago of load_pagos.pagos' value={{pago.id_pagos}} >{{pago.com_nombre_pago}}</option>
+
+  </select>
+  <br>
+  <table  id="alumno_pagos" class="display alumnos" width="100%" *ngIf="_viewTablePagos == true">
+      <thead>
+        <tr>
+          <th >No.</th>
+          <th >Nombre</th>
+          <th>Grado</th>
+          <th>Seccion</th>
+          <th>c. mineduc</th>
+          <th>Nombre de pago</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let pagos of load_pagos_alumno.pagos; let i = index'>
+          <td >{{i}}</td>
+          <td >{{pagos.estudiante}}</td>
+          <td >{{pagos.grado}}</td>
+          <td >{{pagos.seccion}}</td>
+          <td >{{pagos.mineduc}}</td>
+          <td >{{pagos.pago}}</td>
+          <td>{{pagos.cantidad}}</td>
+        </tr>
+      </tbody>
+      </table>
+</div>
+
 <br><br>
+
+
+
+<!--Modal para cobros-->
+<div class="modal fade bd_cobros" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Realizar Cobros</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Nombre del Cobro</span>
+                    <select name="" id="" class="form-control" (change) ='function_obtener_id_insert(pago.value)' #pago>
+                      <option value="">Seleccione uno</option>
+                      <option *ngFor='let pago of load_data_cobros.pagos' value={{pago.id_pagos}} >{{pago.com_nombre_pago}} &nbsp; &nbsp; &nbsp;Q.{{pago.cantidad_pago}}</option>
+                    </select>
+                  </div>
+                    <br>
+                    <div>
+                      <label for="">Fecha</label>
+                      <input type="date" class="form-control" #fecha_pago>
+                    </div>
+                  <br>
+                  <div *ngIf='bool_save == true'>
+                    Error al Guardar
+                  </div>
+                  <div *ngIf='load_imp == false'>
+                      <button class="btn btn-success" (click)='save_cobro(fecha_pago)' >
+                          Realizar Cobro
+                        </button>
+
+                        <button class="btn btn-danger" data-dismiss="modal">
+                          cancelar
+                        </button>
+                  </div>
+                  <div *ngIf='load_imp == true'>
+                      <button class="btn btn-success" (click)='load_data_imp_comprobante()' >
+                          Imprimir
+                        </button>
+
+                        <button class="btn btn-danger" data-dismiss="modal">
+                          Cancelar
+                        </button>
+                  </div>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!--Modal para Colegiatura-->
+<div class="modal fade bd_colegiatura" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Realizar Cobros</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <label for="">MES</label>
+            <select class="form-control" name="" id="" (change) = 'function_select_mes(select_mes.value)' #select_mes>
+              <option value="0">Seleccione un MES</option>
+              <option value="1">Enero</option>
+              <option value="2">Febrero</option>
+              <option value="3">Marzo</option>
+              <option value="4">Abril</option>
+              <option value="5">Mayo</option>
+              <option value="6">Junio</option>
+              <option value="7">Julio</option>
+              <option value="8">Agosto</option>
+              <option value="9">Septiembre</option>
+              <option value="10">Octubre</option>
+
+            </select>
+
+<br>
+            <label for="">Fecha</label>
+            <input class="form-control" type="date" name="" id="" #fecha>
+                  <br>
+                <br>
+                <div *ngIf='bool_save == true'>
+                    Error. no se ha podido Guardar
+                </div>
+                <br>
+                <div *ngIf='load_imp == false'>
+                    <button class="btn btn-success" (click)='save_colegiatura(fecha)' >
+                        Realizar Cobro
+                      </button>
+
+                      <button class="btn btn-danger" data-dismiss="modal">
+                        cancelar
+                      </button>
+                </div>
+                <div *ngIf='load_imp == true'>
+                    <button class="btn btn-success" (click)='function_imprimir_colegiatura()' >
+                        Imprimir
+                    </button>
+
+                      <button class="btn btn-danger" data-dismiss="modal">
+                        Cancelar
+                      </button>
+                </div>
+
+        </div>
+
+    </div>
+  </div>
+</div>

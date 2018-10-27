@@ -21,12 +21,19 @@
         <!--Para Nombres-->
         <div class="col-md-4">
             <label><b>Primer Nombre</b></label>
-            <input type="text" class="form-control" name="pnombre" ngModel>
-          </div>
+            <div class="input-group">
+              <span class="input-group-addon">*</span>
+              <input type="text" class="form-control" required name="pnombre" ngModel>
+            </div>  
+        </div>
 
           <div class="col-md-4">
             <label><b>Segundo Nombre</b></label>
-            <input type="text" class="form-control" name="snombre" ngModel>
+            <div class="input-group">
+              <span class="input-group-addon">*</span>
+                <input type="text" class="form-control" required name="snombre" ngModel>
+            </div>
+            
           </div>
 
           <div class="col-md-4">
@@ -37,12 +44,20 @@
         <!--Para Apellidos-->
           <div class="col-md-4">
             <label><b>Primer Apellido</b></label>
-            <input type="text" class="form-control" name="papellido" ngModel> 
+            <div class="input-group">
+                <span class="input-group-addon" >*</span>
+                <input type="text" class="form-control" name="papellido" ngModel>
+            </div>
+ 
           </div>
 
           <div class="col-md-4">
             <label><b>Segundo Apellido</b></label>
-            <input type="text" class="form-control" name="sapellido" ngModel>
+            <div class="input-group">
+                <span class="input-group-addon">*</span>
+                <input type="text" class="form-control" name="sapellido" ngModel>
+            </div>
+
           </div>
 
           <div class="col-md-4">
@@ -52,40 +67,66 @@
         <!--Edad--->
           <div class="col-md-4">
             <label><b>Edad</b></label>
-            <input type="text" class="form-control" name="edad" ngModel>
+            <div class="input-group">
+              <span class="input-group-addon">*</span>  
+              <input type="number" min="18" class="form-control" name="edad" ngModel>
+            </div>
           </div>
         <!--Telefono Celular--->
           <div class="col-md-4">
             <label><b>Telefono Celular</b></label>
-            <input type="text" class="form-control" name="tcelular" ngModel>
+            <div class="input-group">
+                <span class="input-group-addon">*</span>
+                <input type="text" class="form-control" name="tcelular" ngModel>
+            </div>
+
           </div>
         <!--Telefono Domiciliar--->
           <div class="col-md-4">
             <label><b>Telefono Domiciliar</b></label>
-            <input type="text" class="form-control" name="tdomiciliar" ngModel>
+            <div class="input-group">
+                <span class="input-group-addon">*</span>
+                <input type="text" class="form-control" name="tdomiciliar" ngModel>
+            </div>
+
           </div>
-        <!--Telefono Domiciliar--->
-          <div class="col-md-4">
-            <label><b>Estado</b></label><br>
-            <select name="" id="" class="form-control" (change)='function_select_estado(estado.value)' #estado>
-              <option value="0">Seleccione</option>
-              <option value="1">Activo</option>
-              <option value="2">Inactivo</option>
-            </select>
-          </div>
-        <!--Telefono Domiciliar--->
-          <div class="col-md-4">
-            <label><b>Cargo</b></label><br>
-            <select name="" id="" class="form-control" (change)='function_select_cargo(cargo.value)' #cargo>
-              <option value="0">Seleccione</option>
-              <option value="1">cargo1</option>
-              <option value="2">cargo 2</option>
-            </select>
-          </div>
+                <!--Estado--->
+                  <div class="col-md-4">
+                    <label><b>Estado</b></label><br>
+                    <div class="input-group">
+                      <span class="input-group-addon">*</span>
+                        <select name="" id="" class="form-control" (change)='function_select_estado(select_es.value)' #select_es >
+                            <option value="0">Seleccione</option>
+                            <option value="1">Activo</option>
+                            <option value="2">Inactivo</option>
+                          </select>
+                    </div>
+
+                  </div>
+                <!--Cargo--->
+                  <div class="col-md-4">
+                    <label><b>Cargo</b></label><br>
+                    <div class="input-group">
+                      <span class="input-group-addon">*</span>
+                        <select name="" id="" class="form-control" (change)='function_select_cargo(select_car.value)' #select_car>
+                            <option value="0">Seleccione</option>
+                            <option value="1">Director</option>
+                            <option value="2">Profesor</option>
+                            <option value="3">Secretario/a</option>
+                            <option value="4">Tesorero/a</option>
+                            <option value="5">Operativo</option>
+                          </select>
+                    </div>
+
+                  </div>
 
 
     </div>
-    <br><br>
+    <br>
+    <div class="alert alert-danger" role="alert" *ngIf='bool_insert == true'>
+        <strong>Error. </strong> el campo con * son necesarios
+    </div>
+    <br>
     <button class="btn btn-success"> 
         Agregar
       </button>
@@ -97,8 +138,15 @@
 
 
   <!--observar a todo el personal disponible siempre y cuanto este este activo-->
-  <div *ngIf='bool_ver_personal == true'> 
-    <table class="table" *ngIf='bool_update == false'>
+  <div *ngIf='bool_ver_personal == true'>
+    <br>
+      <button class="btn btn-danger" (click)="convert()">
+          <i class="fa fa-file"></i>
+          Generar PDF
+      </button>
+
+      <br><br> 
+    <table class="table" id="myTable" *ngIf='bool_update == false'>
       <tr>
 
         <th>
@@ -129,81 +177,123 @@
 
       <h4>actualizar datos</h4>
       <hr>
-        <form>
-            <div class="row">
+
+            <div class="row" *ngFor='let profesor of load_data_update.profesor'>
                 <!--Para Nombres-->
                 <div class="col-md-4">
                     <label><b>Primer Nombre</b></label>
-                    <input type="text" class="form-control" value={{load_data_update.profesor.com_primer_nombre}} placeholder={{load_data_update.com_primer_nombre}}>
+                    <div class="input-group">
+                        <span class="input-group-addon">*</span>
+                        <input type="text" class="form-control" value={{profesor.com_primer_nombre}} #pnombre >
+                    </div>
+                    
                   </div>
         
                   <div class="col-md-4">
                     <label><b>Segundo Nombre</b></label>
-                    <input type="text" class="form-control">
+                    <div class="input-group">
+                        <span class="input-group-addon">*</span>
+                        <input type="text" class="form-control" value={{profesor.com_segundo_nombre}} #snombre>
+                    </div>
+
                   </div>
         
                   <div class="col-md-4">
                     <label><b>Tercer Nombre</b></label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" value={{profesor.com_tercer_nombre}} #tnombre >
                   </div>
                   <br>
                 <!--Para Apellidos-->
                   <div class="col-md-4">
                     <label><b>Primer Apellido</b></label>
-                    <input type="text" class="form-control">
+                    <div class="input-group">
+                      <span class="input-group-addon">*</span>
+                        <input type="text" class="form-control" value={{profesor.com_primer_apellido}} #papellido>
+                    </div>
                   </div>
         
                   <div class="col-md-4">
                     <label><b>Segundo Apellido</b></label>
-                    <input type="text" class="form-control">
+                    <div class="input-group">
+                      <span class="input-group-addon">*</span>
+                    <input type="text" class="form-control" value={{profesor.com_segundo_apellido}} #sapellido >
+                    </div>
                   </div>
         
                   <div class="col-md-4">
                     <label><b>Tercer Apellido</b></label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" value={{profesor.com_tercer_apellido}} #tapellido>
                   </div>
                 <!--Edad--->
                   <div class="col-md-4">
                     <label><b>Edad</b></label>
-                    <input type="text" class="form-control">
+                    <div class="input-group">
+                        <span class="input-group-addon">*</span>
+                        <input type="text" class="form-control" value={{profesor.com_edad}} #edad >
+                    </div>
                   </div>
                 <!--Telefono Celular--->
                   <div class="col-md-4">
-                    <label><b>Edad</b></label>
-                    <input type="text" class="form-control">
+                    <label><b>Telefono Celular</b></label>
+                    <div class="input-group">
+                      <span class="input-group-addon">*</span>
+                      <input type="text" class="form-control" value={{profesor.com_telefono_celular}} #tcelular>
+                    </div>
                   </div>
                 <!--Telefono Domiciliar--->
                   <div class="col-md-4">
-                    <label><b>Edad</b></label>
-                    <input type="text" class="form-control">
+                    <label><b>telefono Domiciliar</b></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">*</span>
+                        <input type="text" class="form-control" value={{profesor.com_telefono_domiciliar}} #tdomiciliar>
+                    </div>
                   </div>
-                <!--Telefono Domiciliar--->
+                <!--Estado--->
                   <div class="col-md-4">
                     <label><b>Estado</b></label><br>
-                    <select name="" id="" class="form-control">
-                      <option value="0">Seleccione</option>
-                      <option value="1">Activo</option>
-                      <option value="2">Inactivo</option>
-                    </select>
+                    <div class="input-group">
+                      <span class="input-group-addon">*</span>
+                      <select name="" id="" class="form-control" (change)='function_select_estado(select_u.value)' #select_u >
+                        <option value="0">Seleccione</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
+                      </select>
+                    </div>
                   </div>
-                <!--Telefono Domiciliar--->
+                <!--Cargo--->
                   <div class="col-md-4">
                     <label><b>Cargo</b></label><br>
-                    <select name="" id="" class="form-control">
-                      <option value="0">Seleccione</option>
-                      <option value="1">Activo</option>
-                      <option value="2">Inactivo</option>
-                    </select>
+                    <div class="input-group">
+                        <span class="input-group-addon">*</span>
+                        <select name="" id="" class="form-control" (change)='function_select_cargo(select_c.value)' #select_c>
+                            <option value="0">Seleccione</option>
+                            <option value="1">Director</option>
+                            <option value="2">Profesor</option>
+                            <option value="3">Secretario/a</option>
+                            <option value="4">Tesorero/a</option>
+                            <option value="5">Operativo</option>
+                          </select>
+                    </div>
+
                   </div>
+
+                  <div class="col-md-12">
+                    <br>
+                      <div class="alert alert-danger" role="alert" *ngIf='bool_update_select == true'>
+                          <strong>Error. </strong> el campo con * son necesarios
+                      </div>
+
+                    <button class="btn btn-success" (click)='function_update(pnombre,snombre,tnombre,papellido,sapellido,tapellido,edad,tcelular,tdomiciliar)'>
+                      actualizar
+                    </button>
+                    <button class="btn btn-danger" (click)='cancel_update();'>
+                      cancelar
+                    </button>
+                  </div>
+
             </div>
-            <br>
-            <button class="btn btn-success">
-              actualizar
-            </button>
-            <button class="btn btn-danger">
-              cancelar
-            </button>
-          </form>
+
+
       
 
     </div>
@@ -214,19 +304,84 @@
   <table class="table">
       <tr>
         <th>nombre</th>
-        <th>direccion</th>
         <th>telefono</th>
-        <th>cargo</th>
+        <th>cursos asignados</th>
         <th>asignar curso</th>
       </tr>
-      <tr>
-        <td>nombre</td>
-        <td>direccion</td>
-        <td>telefono</td>
-        <td>cargo</td>
-        <td><button class="btn btn-success">asignar cursos</button></td>
+      <tr *ngFor='let catedratico of load_catedratico.catedratico'>
+        <td>{{catedratico.personal}}</td>
+        <td>{{catedratico.celular}}</td>
+        <td><button class="btn btn-info" data-toggle="modal" data-target=".bd_ver_asignacion" (click)='function_cursos_catedratico(catedratico.id_personal)'>ver</button></td>
+        <td><button class="btn btn-success" data-toggle="modal" data-target=".bd_asignacion" (click)='function_load_cursos(catedratico.id_personal);' >asignar cursos</button></td>
       </tr>
   </table>
 
   </div>
 </div>
+
+
+
+<!--Modal para asignacion-->
+<div class="modal fade bd_asignacion" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Asignacion de Cursos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <label for=""><b>Seleccione un curso</b></label>
+              <select class="form-control" name="" id="" (change)='function_sele_asig(curso.value)' #curso>
+                <option  value="0">Seleccione un curso</option>
+                <option *ngFor='let cursos of load_cursos_cat.cursos' value={{cursos.id_curso}}>{{cursos.com_nombre}} </option>
+
+              </select>
+            </div>
+
+ <br><br>
+                  <button class="btn btn-success" (click)='function_asig_course()'>
+                    Asignar
+                  </button>
+          
+                  <button class="btn btn-danger" data-dismiss="modal">
+                    cancelar
+                  </button>
+  
+          </div>
+  
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--Modal para ver cursos por profesor-->
+<div class="modal fade bd_ver_asignacion" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cursos por catedraticos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+<table class="table">
+  <tr>
+    <th>Nombre del Curso</th>
+    <th>desasignar</th>
+  </tr>
+  <tr *ngFor='let cat of load_cursos_cat1.corse'>
+    <td>{{cat.curso}}</td>
+    <td><button class="btn btn-danger">Desasignar</button> </td>
+  </tr>
+</table>
+  
+          </div>
+  
+      </div>
+    </div>
+  </div>

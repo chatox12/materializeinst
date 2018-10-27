@@ -6,3 +6,18 @@
     margin-right: 2%;
     display: block;
 }
+
+.notas{
+    border: 1px solid;
+    width: 400px;
+}
+
+.unidad{
+    border: 1px solid;
+    width: 100px;
+    text-align: center;
+}
+
+.datos_alumno{
+
+}

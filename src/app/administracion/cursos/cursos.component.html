@@ -19,12 +19,17 @@
 <div *ngIf='listar == true'>
     <h5><b>Listar Cursos</b></h5>
     <hr>
+    <button class="btn btn-danger" (click)='generate_pdf_to_course()'> 
+      Generar PDF
+    </button>
+    <br>
     <table id="Cursos" class="display" width="100%">
         <thead>
           <tr>
             <th>Orden</th>
             <th>Nombre</th>
             <th >Actualizar</th>
+            <th>eliminar</th>
           </tr>
         </thead>
         <tbody>
@@ -32,6 +37,7 @@
             <td> {{cursos.id_curso}}</td>
             <td> {{cursos.com_nombre}}</td>
             <td align="center">  <button class="btn btn-success" data-toggle="modal" data-target=".Actualizar" (click)='function_datos(cursos.id_curso,cursos.com_nombre)'><i class="fa fa-edit"></i> Editar</button> </td>
+            <td><button class="btn btn-danger">Eliminar</button></td>
           </tr>
         </tbody>
       </table>
@@ -55,15 +61,20 @@
       <div class="col-md-4">
         <select class="form-control" (change)='function_obtener_id_grado_asi(grado.value)' #grado>
           <option value=0>Seleccione un Grado</option>
-          <option value=1>Grado 1</option>
-          <option value=2>Grado 2</option>
-          <option value=3>Grado 3</option>
+          <option value=1>Primero</option>
+          <option value=2>Segundo</option>
+          <option value=3>Tercero</option>
         </select>
       </div>
 
+      
       <button class="btn btn-success" (click)='funcion_save_cursos_to_grado()'>
         Asignar Curso
       </button>
+      <br><br>
+      <div class="alert alert-danger" role="alert" *ngIf='bool_asig_no_correct == true' >
+          <strong>Error. </strong> el campo con * es necesario  
+      </div>
   </div>
 
 <!--para ver cursos por grado seleccionado-->
@@ -71,30 +82,36 @@
     <h5><b>  Visualizando cursos por grado</b></h5>
     <select class="form-control col-md-4" (change)='function_seleccion_curso_view(valor.value)' #valor >
       <option value="0">Seleccione el Grado</option>
-      <option value=1>Grado 1</option>
-      <option value=2>Grado 2</option>
-      <option value=3>Grado 3</option>
-      <option value=""></option>
+      <option value=1>Primero</option>
+      <option value=2>Segundo</option>
+      <option value=3>Tercero</option>
     </select>
 <br>
-    <table class="table" *ngIf='Seleccionar_grado == true'>
-      <thead>
-        <tr>
-          <th>Orden</th>
-          <th>Nombre</th>
-          <th>Eliminar</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor='let cursos of load_data_cursos.cursos;'>
-          <td> No. Orden</td>
-          <td> {{cursos.com_nombre}}</td>
-          <td><button class="btn btn-danger">Eliminar</button></td>
-        </tr>
-      </tbody>
-    </table>
+<div *ngIf='Seleccionar_grado == true'>
+  <button class="btn btn-danger" (click)='generate_pdf_to_grade()'>
+    Generar PDF
+  </button>
+    <table class="table" >
+        <thead>
+          <tr>
+            <th>Orden</th>
+            <th>Nombre</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let cursos of load_data_cursos.cursos; let i = index'>
+            <td> {{i+1}}</td>
+            <td> {{cursos.com_nombre}}</td>
+            <td><button class="btn btn-danger">Eliminar</button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+  
   </div>
 
+  <!--para nuevo curso-->
 
   <div *ngIf='nuevo == true'>
     <h5><b>Agregar Nuevo curso</b></h5>
@@ -102,7 +119,14 @@
     <form #nuevo='ngForm' (ngSubmit)='function_save(nuevo)'>
       <div class="col-md-6">
         <label><b>Nombre del curso</b></label>
-        <input type="text" class="form-control"  placeholder="Ingrese el nombre del curso" name="nombre" ngModel  required>
+        <div class="input-group">
+          <span class="input-group-addon">*</span>
+            <input type="text" class="form-control"  placeholder="Ingrese el nombre del curso" name="nombre" ngModel  required>
+        </div>
+        <br>
+        <div class="alert alert-danger" role="alert" *ngIf='bool_insert == true'>
+            <strong>Error. </strong> el campo con * es necesario  
+        </div>
       </div>
       <br>
       <button class="btn btn-success">

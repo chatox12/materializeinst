@@ -3,39 +3,34 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" [routerLink]="['./index']">Inicio</a>
-      
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li>
               <a class="nav-link" [routerLink]="['./notas']" >Notas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['./pagos']" >Pagos</a>
-            </li>
-            
-            <li class="nav-item">
               <a class="nav-link" [routerLink]="['./alumnos']" >Alumnos</a>
             </li>
-            
+
             <li class="nav-item dropdown" >
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Configuracion
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" [routerLink]="['./ciclo']" >Ciclo Escolar</a>
-                <a class="dropdown-item" [routerLink]="['./personal']" >Personal</a>
                 <a class="dropdown-item" [routerLink]="['./cursos']">Cursos</a>
-                <a class="dropdown-item" [routerLink]="['./institucion']">Institucion</a>
+                <a class="dropdown-item" [routerLink]="['./personal']" >Personal</a>
+                <a class="dropdown-item" [routerLink]="['./cursos']">Pagos</a>
                 </div>
             </li>
 
             <li class="nav-item dropdown usuario_left">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Nombre de Usuario
+                {{nombre_profesor}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Manual</a>
-                <a class="dropdown-item" href="#">Salir</a>
+                <a class="dropdown-item" href="#" (click)='function_salir()'>Salir</a>
                 </div>
             </li>
 

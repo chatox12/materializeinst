@@ -1,25 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 declare var jsPDF: any; // Important
 
 
-
 declare var $;
-import * as FileSaver from 'file-saver';
-import * as XLSX from 'xlsx';
-
-const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-const EXCEL_EXTENSION = '.xlsx';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'})
 }
+
 @Component({
-  selector: 'app-notas',
-  templateUrl: './notas.component.html',
-  styleUrls: ['./notas.component.css']
+  selector: 'app-catedratico',
+  templateUrl: './catedratico.component.html',
+  styleUrls: ['./catedratico.component.css']
 })
-export class NotasComponent implements OnInit {
+export class CatedraticoComponent implements OnInit {
+
   /**load api */
   load_api: string = 'http://localhost:90/api/';
   load_data: any = {};
@@ -52,11 +49,53 @@ export class NotasComponent implements OnInit {
   var_id_nota_update:number = 0;
 
 
+  /*cargar datos necesarios para los usuarios*/
+  nombre_profesor:string = '';
+  id_profresor:number = 0;
+  _dataProfesor: any = {};
   constructor( private http: HttpClient) {
     this.Function_seleccion_seccion(0);
+    this.function_load_session();
+   }
+
+   function_load_session(){
+     let ver = JSON.parse(sessionStorage.getItem('datos'));
+     this.id_profresor = ver.id_personal;
+     this.function_load_name();
+     this.function_cursos_catedratico(this.id_profresor);
+   }
+
+   function_load_name(){
+     this.http.get(this.load_api+'prof_to_grade/'+this.id_profresor).subscribe(
+       data=>{
+         this._dataProfesor = data;
+         this.function_name();
+       },
+       err =>{
+
+       }
+     );
+   }
+
+   function_name(){
+     let name = [];
+     name = this._dataProfesor.profesor;
+     this.nombre_profesor = name[0].com_primer_nombre + ' ' +name[0].com_segundo_nombre + ' ' +name[0].com_tercer_nombre + ' ' +name[0].com_primer_apellido + ' ' +name[0].com_segundo_apellido + ' ' +name[0].com_tercer_apellido;
 
    }
 
+/*funcion para seleccionar los cursos de un profesor*/
+function_cursos_catedratico(id:number){
+  this.http.get(this.load_api+'prof_to_curso/'+id).subscribe(
+    data=>{
+      this.load_data_cursos = data;
+    },
+    err =>{
+
+    }
+  );
+
+}
    /**funcion para seleccionar las vistas */
    bool_ingreso:boolean = false;
    bool_reportes: boolean = false;
@@ -90,12 +129,10 @@ export class NotasComponent implements OnInit {
       this.Seleccion_grado = true;
       this.Var_grado = Estado;
       this.bool_d_grado = true;
-      this.load_data_cursos = {};
-      this.function_load_cursos();
-
      }
      else{
       this.Seleccion_grado = false;
+
      }
 
    }
@@ -113,16 +150,8 @@ export class NotasComponent implements OnInit {
 
    }
 
-   function_load_cursos(){
-     this.http.get(this.load_api+'cursos/grado/'+this.Var_grado).subscribe(
-       data=>{
-        this.load_data_cursos = data;
-       },
-       err => {
 
-       }
-     );
-   }
+
 
    function_load_data(){
     this.http.get(this.load_api+'estudiante/2/'+this.Var_grado+'/'+this.var_seccion).subscribe(
@@ -263,7 +292,6 @@ data=>{
 alert('curso actualizado correctamente');
 },
 err =>{
-console.log(err);
 }
 
 );
@@ -340,20 +368,10 @@ open_data_uri_window(a);
 
 }
 
-/*Funcion para generar Excel*/
-function_generate_excel(){
-  this.generar_excel_todos_alumnos(this._loadDataPDF.alumnos, 'Alumnos');
 
+function_Salir(){
+  sessionStorage.removeItem('datos');
 }
-
-
-generar_excel_todos_alumnos(data: any[], nombre:string){
-  const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
-  const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] } ;
-  XLSX.writeFile(workbook, nombre+'.xls', { bookType: 'xls', type: 'buffer' });
-}
-
-
 
   ngOnInit() {
   }

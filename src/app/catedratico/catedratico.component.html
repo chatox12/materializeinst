@@ -1,0 +1,145 @@
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Bienvenido</a>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">{{nombre_profesor}} <span class="sr-only">(current)</span></a>
+        </li>
+
+      </ul>
+      <span class="navbar-text" (click)='function_Salir()'>
+        <a class="navbar-brand" href="#"> salir</a>
+      </span>
+    </div>
+  </nav>
+<div class="container profesor">
+  <div class="row">
+    <label for="">Cursos Disponibles</label>&nbsp;&nbsp;
+    <select class="" name="" class="form-control col-md-6" (change)='function_select_curso(cursoC.value)' #cursoC>
+      <option value="">Seleccione un Curso</option>
+      <option value={{cursos.id}} *ngFor='let cursos of load_data_cursos.curso'> {{cursos.curso}}</option>
+    </select>
+
+
+
+  </div>
+<br>
+<br>
+
+    <div class="row col-md-12">
+      <!--Seleccionar Grado-->
+      <div class="col-md-3">
+        <select class="form-control"  (change)='Fuction_seleccion_grado(valor_grado.value)' #valor_grado>
+          <option value="0">Seleccione un Grado</option>
+          <option value="1">Primero</option>
+          <option value="2">Segundo</option>
+          <option value="3">Tercero</option>
+        </select>
+      </div>
+
+        <!--Seleccionar Seccion-->
+      <div class="col-md-3">
+        <select class="form-control"  (change)='Function_seleccion_seccion(valor_seccion.value)' #valor_seccion>
+          <option value="0">Seleccione una Seccion</option>
+          <option value="1">A</option>
+          <option value="2">B</option>
+        </select>
+      </div>
+
+
+      <div class="col-md-3">
+        <select class=" form-control"  (change)='function_select_unidad(valor.value)' #valor >
+          <option value="0">Seleccione la unidad</option>
+          <option value="1">I</option>
+          <option value="2">II</option>
+          <option value="3">III</option>
+          <option value="4">IV</option>
+        </select>
+      </div>
+
+      &nbsp;
+      <button class="btn btn-danger" (click)='function_cambiar()' *ngIf='Seleccion_grado == true && Seleccion_seccion == true  && bool_d_unidad == true && bool_d_curso == true'>
+        cambiar
+      </button>
+    </div>
+
+
+
+      <!--Agregar Notas-->
+    <div *ngIf='Seleccion_grado == true && Seleccion_seccion == true  && bool_d_unidad == true && bool_d_curso == true'>
+
+  <!--Agregar Nueva nota y unidad-->
+      <div>
+        <br>
+        <div class="row">
+            <br><br>
+            <div class=" col-md-12 row">
+                <button class="btn btn-success" (click)='Mostrar_inicio(true);function_select_view(1)'>Ingreso de notas</button>
+                <div class="col-md-1"></div>
+                <button class="btn btn-danger"  (click)='function_select_view(2)'>generar reportes</button>
+              </div>
+        </div>
+      <br><br>
+
+      </div>
+
+    </div>
+  <!--para las notas-->
+    <div *ngIf = 'bool_ingreso == true'>
+        <div *ngIf='bool_load_table == true'>
+            <table class="table notas">
+              <tr>
+                <th>No. Orden</th>
+                <th>Nombre de alumno</th>
+                <th>Calificacion</th>
+              </tr>
+              <tr *ngFor='let alumno of load_data.estudiante; index as i'>
+                <td disabled>{{i+1}}</td>
+                <td>{{alumno.estudiante}}</td>
+                <td><input type="number" min="0" max="100" (keydown.tab)='function_separate(nota.value, alumno.id)'  #nota></td>
+              </tr>
+            </table>
+
+            <button class="btn btn-danger" (click)='function_cambiar()'>
+              Cancelar
+            </button>
+          </div>
+
+    </div>
+
+    <!--para generar PDF o EXCEL-->
+    <div *ngIf='bool_reportes == true'>
+  <button class="btn btn-outline-success" (click)='function_generate_pdf()'>
+    PDF
+  </button>
+
+    </div>
+<br><br>
+
+    <div  role="alert" >
+
+
+    </div>
+
+    <div class="alert alert-danger" *ngIf='bool_d_curso == false'>
+    <strong >*</strong>SELECCIONE UN CURSO <br>
+    </div>
+
+    <div class="alert alert-danger" *ngIf='Seleccion_grado == false'>
+      <strong>*</strong>SELECCIONE UN GRADO <br>
+    </div>
+
+    <div class="alert alert-danger" *ngIf='Seleccion_seccion == false'>
+      <strong>*</strong>SELECCIONE UNA SECCION <br>
+    </div>
+
+    <div class="alert alert-danger" *ngIf='bool_d_unidad == false'>
+      <strong>*</strong>SELECCIONE UNA UNIDAD <br>
+    </div>
+
+
+
+</div>

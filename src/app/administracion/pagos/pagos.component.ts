@@ -24,12 +24,18 @@ export class PagosComponent implements OnInit {
    * load api
    */
   load_api:string = 'http://localhost:90/api/';
+  load_data: any = {};
+  correct_load: boolean = false;
+  bool_save:boolean = false;
+  /**
+   * para realizar un cobro
+   */
+  id_pagos:number = 0;
+  nombre_pago:string = '';
+  cantidad_pago:number = 0.0;
 
   constructor(private http:HttpClient) {
 
-    $('#myModal').on('shown.bs.modal', function () {
-      $('#myInput').focus()
-    });
 
     this.function_mostar(1);
 
@@ -44,6 +50,12 @@ export class PagosComponent implements OnInit {
         this.cobro_disponible = true;
         this.nuevo_cobro = false;
         this.pago_colegiatura  = false;
+        
+        if(this.correct_load == false){
+          this.function_load_data();
+        }
+  
+
       }
       else
       if(mostar == 2){
@@ -61,31 +73,54 @@ export class PagosComponent implements OnInit {
     }
 
 
-  function_cobro_nuevo(){
-    console.log('nuevo cobro');
+  function_cobro_nuevo(id:number, nombre:string, cantidad:number){
+    this.id_pagos = id;
+    this.nombre_pago = nombre;
+    this.cantidad_pago = cantidad;
+    console.log(id + nombre + cantidad);
   }
 
+
+  function_load_data(){
+    this.http.get(this.load_api+'pagos').subscribe(
+      data=>{
+        this.load_data = data;
+        this.correct_load = true;
+      },
+      err =>{
+      }
+    );
+  }
   
 
 
   function_save(forms: NgForm){
 
-    const parametros = new HttpParams()
-    .set('nombre', forms.value.pago)
-    .set('cantidad', forms.value.costo );
 
-console.log(parametros);
 
-    this.http.post(this.load_api+'pagos',parametros,httpOptions).subscribe(
-    data=>{
-      alert("Alumno Agregado Correctamente");
-    },
-    err =>{
-      console.log(err);
+    if(forms.value.pago != '' && forms.value.costo != ''){
+      const parametros = new HttpParams()
+      .set('nombre', forms.value.pago)
+      .set('cantidad', forms.value.costo );
+  
+  console.log(parametros);
+  
+      this.http.post(this.load_api+'pagos',parametros,httpOptions).subscribe(
+      data=>{
+        alert("cobro Agregado Correctamente");
+        this.correct_load = false;
+        this.function_mostar(1);
+  
+      },
+      err =>{
+        console.log(err);
+      }
+   
+      );
     }
- 
-    );
-
+    else{
+      this.bool_save = true;
+    }
 
   }
 
@@ -93,7 +128,35 @@ console.log(parametros);
 
 
 
+  function_update(pago:HTMLInputElement, costo:HTMLInputElement){
 
+
+    if(pago.value != '' && costo.value != ''){
+      const parametros = new HttpParams()
+      .set('nombre', pago.value)
+      .set('cantidad',costo.value );
+  
+  console.log(parametros);
+  
+      this.http.put(this.load_api+'pagos/'+this.id_pagos,parametros,httpOptions).subscribe(
+      data=>{
+        alert("Cobro Modificado Correctamente");
+        this.correct_load = false;
+        this.function_mostar(1);
+  
+      },
+      err =>{
+        console.log(err);
+      }
+   
+      );
+    }
+    else{
+      this.bool_save = true;
+    }
+
+
+  }
 
 
 

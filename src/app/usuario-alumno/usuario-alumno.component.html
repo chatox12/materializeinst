@@ -1,15 +1,62 @@
-<!-- Dropdown Structure -->
-<ul id="drop_nav" class="dropdown-content contenido">
-    <li><a href="#!">Perfil</a></li>
-    <li><a href="#!">Salir <i class="fa fa-power-off"></i></a></li>
-  </ul>
-  <nav>
-    <div class="nav-wrapper black">
-      <ul class="right hide-on-med-and-down position-nav">
-        <!-- Dropdown Trigger -->
-        <li><a class="nav-trigger" href="#!" data-target="drop_nav">Nombre de Usuario <i class="fa fa-arrow-down"></i></a></li>
-      </ul>
-    </div>
-  </nav>
-  
-         
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" [routerLink]="['/alumno']" >Bienvendio &nbsp;{{nombre_usuario}}</a>
+        <a class="navbar-brand" href="#" (click)='function_salir()'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SALIR</a>
+
+      </nav>
+
+<div class="container">
+  <div class="data" *ngFor='let note of load_data.notas'>
+      <div class="datos_alumno">
+          <b>Grado:</b>  {{note.grado}} <br>
+          <b>seccion:</b>  {{note.seccion}} <br>
+          <div class="row">
+                  <div class="notas">
+                      <label for="">Nombre de curso</label>
+                  </div>
+                  <div class="unidad">
+                      <label for="">Unidad I</label>
+                  </div>
+                  <div class="unidad">
+                      <label for="">Unidad II</label>
+                  </div>
+                  <div class="unidad">
+                          <label for="">Unidad III</label>
+                  </div>
+                  <div class="unidad">
+                          <label for="">Unidad IV</label>
+                  </div>
+                  <div class="unidad">
+                          <label for="">promedio</label>
+                  </div>
+              </div>
+          <div *ngFor='let materia of note.materia'>
+
+              <div class="row">
+              <div class="notas">
+                  <label for="">{{materia.curso}}</label>
+              </div>
+              <div class="unidad">
+                  <label for="">{{materia.nota1}}</label>
+              </div>
+              <div class="unidad">
+                  <label for="">{{materia.nota2}}</label>
+              </div>
+              <div class="unidad">
+                  <label for="">{{materia.nota3}}</label>
+              </div>
+              <div class="unidad">
+                  <label for="">{{materia.nota4}}</label>
+              </div>
+              <div class="unidad">
+                  <label for="">{{materia.promedio}}</label>
+              </div>
+              </div>
+
+          </div>
+      </div> <br><br>
+  </div>
+</div>

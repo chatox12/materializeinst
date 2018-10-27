@@ -1,90 +1,105 @@
 <div class="container">
+<!--Ingreso de Notas-->
+<div >
+
+</div>
+
+
   <div class="row">
     <!--Seleccionar Grado-->
     <div class="col-md-4">
-      <select class="form-control" (change)='Fuction_seleccion_grado(valor.value)' #valor>
+      <select class="form-control"  (change)='Fuction_seleccion_grado(valor.value)' #valor ngModel>
         <option value="0">Seleccione un Grado</option>
         <option value="1">Primero</option>
         <option value="2">Segundo</option>
         <option value="3">Tercero</option>
       </select>
     </div>
-      
+
       <!--Seleccionar Seccion-->
     <div class="col-md-4">
-      <select class="form-control" (change)='Function_seleccion_seccion(valor_seccion.value)' #valor_seccion>
+      <select class="form-control"  (change)='Function_seleccion_seccion(valor_seccion.value)' #valor_seccion>
         <option value="0">Seleccione una Seccion</option>
         <option value="1">A</option>
         <option value="2">B</option>
       </select>
     </div>
-
   </div>
-<br>
     <div class="alert alert-danger" role="alert" *ngIf='Seleccion_seccion == false &&  Seleccion_grado == false '>
       <strong>Antes de Iniciar</strong> Seleccione un Grado y una seccion
     </div>
-<br> 
+    <!--Agregar Notas-->
   <div *ngIf='Seleccion_grado == true && Seleccion_seccion == true'>
-    <button class="btn btn-success" (click)='Mostrar_inicio(true)'>
-      Agregar Notas
-    </button>
-    <br><br>
-    <!--Mostrar Notas-->
-    <div *ngIf='seleccion == false'>
-      <table class="table">
-        <tr>
-          <th>orden</th>
-          <th>nombre</th>
-          <th>unidad 1</th>
-          <th>promedio</th>
-        </tr>
-
-        <tr>
-          <td>1</td>
-          <td>uno</td>
-          <td>1</td>
-          <td>10</td>
-        </tr>
-      </table>
-    </div>
 
 <!--Agregar Nueva nota y unidad-->
-    <div *ngIf='seleccion == true'>
-      <h5><b>Agregando notas</b></h5>
-      <hr>
-      <div class="col-md-6">
-        <select class="form-control">
-          <option value="">Seleccione la unidad</option>
-          <option value="">Primera</option>
-          <option value="">Segunda</option>
-          <option value="">Tercera</option>
-          <option value="">Cuarta</option>
-        </select>
-      </div>
-    <br><br>        
-      <table class="table">
-        <tr>
-          <th>No. Orden</th>
-          <th>Nombre de alumno</th>
-          <th>Calificacion</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Nombre de alumno</td>
-          <td>0</td>
-        </tr>
-      </table>
+    <div>
+      <br>
+      <div class="row">
+        <div class="col-md-4">
+          <select class=" form-control"  (click)='function_select_unidad(valor.value)' #valor >
+            <option value="0">Seleccione la unidad</option>
+            <option value="1">I</option>
+            <option value="2">II</option>
+            <option value="3">III</option>
+            <option value="4">IV</option>
+          </select>
+        </div>
 
-      <button class="btn btn-success">
-        agregar notas
-      </button>
-      <button class="btn btn-danger" (click)='Mostrar_inicio(false)'>
-        Cancelar
-      </button>
+        <div class="col-md-4">
+          <select class="form-control"  (change)='function_select_curso(curso.value)' [disabled]='bool_d_curso == true' #curso>
+            <option value="0">seleccione un curso</option>
+            <option *ngFor='let cursos of load_data_cursos.cursos' value={{cursos.id}}>{{cursos.com_nombre}}</option>
+          </select>
+        </div>
+
+          &nbsp;
+          <button class="btn btn-danger" (click)='function_cambiar()'>
+            cambiar
+          </button>
+
+          <br><br>
+          <div class=" col-md-12 row">
+              <button class="btn btn-success" (click)='Mostrar_inicio(true);function_select_view(1)'>Ingreso de notas</button>
+              <div class="col-md-1"></div>
+              <button class="btn btn-danger"  (click)='function_select_view(2)'>generar reportes</button>
+            </div>
+      </div>
+    <br><br>
+
     </div>
 
   </div>
+<!--para las notas-->
+  <div *ngIf = 'bool_ingreso == true'>
+      <div *ngIf='bool_load_table == true'>
+          <table class="table notas">
+            <tr>
+              <th>No. Orden</th>
+              <th>Nombre de alumno</th>
+              <th>Calificacion</th>
+            </tr>
+            <tr *ngFor='let alumno of load_data.estudiante; index as i'>
+              <td disabled>{{i+1}}</td>
+              <td>{{alumno.estudiante}}</td>
+              <td><input type="number" min="0" max="100" (keydown.tab)='function_separate(nota.value, alumno.id)'  #nota></td>
+            </tr>
+          </table>
 
-  
+          <button class="btn btn-danger" (click)='function_cambiar()'>
+            Cancelar
+          </button>
+        </div>
+
+  </div>
+
+  <!--para generar PDF o EXCEL-->
+  <div *ngIf='bool_reportes == true'>
+<button class="btn btn-outline-success" (click)='function_generate_pdf()'>
+  PDF
+</button>
+
+<button class="btn btn-outline-danger" (click)='function_generate_excel()'>
+  EXCEL
+</button>
+  </div>
 </div>

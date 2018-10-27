@@ -1,3 +1,7 @@
 .dropdown{
     margin-left: 10%;
 }
+
+.notas td{
+    padding: 0;
+}

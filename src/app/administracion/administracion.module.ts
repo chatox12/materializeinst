@@ -9,6 +9,8 @@ import { AdministracionComponent } from './administracion.component';
 import { SidebarComponent } from './componets/sidebar/sidebar.component';
 import { NavbarComponent } from './componets/navbar/navbar.component';
 
+import { AdminguardGuard } from '../adminguard.guard';
+
 @NgModule({
     imports:[
         CommonModule,
@@ -20,7 +22,7 @@ import { NavbarComponent } from './componets/navbar/navbar.component';
         SidebarComponent,
         NavbarComponent,
     ],
-    providers: [ ]
+    providers: [AdminguardGuard ]
 })
 
 

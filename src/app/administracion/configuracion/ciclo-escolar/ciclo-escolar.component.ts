@@ -16,6 +16,11 @@ const httpOptions = {
 })
 export class CicloEscolarComponent implements OnInit {
   /**
+   * comoplete data of insert
+   */
+  bool_insert:boolean = false;
+
+  /**
    * variables a utilizar 
    */
   load_data: any = {};
@@ -98,19 +103,26 @@ export class CicloEscolarComponent implements OnInit {
     * funcion para ingresar nuevo ciclo
     */
    function_save(forms: NgForm){
-    const parametros = new HttpParams()
-    .set('nombre', forms.value.nombre);
 
-    this.http.post('http://localhost:90/api/ciclo',parametros,httpOptions).subscribe(
-    data=>{
-      alert("Ciclo Escolar Creado Correctamente");
-      this.function_view_components(1);
-    },
-    err =>{
-      console.log(err);
+    if(forms.value.nombre == null){
+      const parametros = new HttpParams()
+      .set('nombre', forms.value.nombre);
+  
+      this.http.post('http://localhost:90/api/ciclo',parametros,httpOptions).subscribe(
+      data=>{
+        alert("Ciclo Escolar Creado Correctamente");
+        this.function_view_components(1);
+      },
+      err =>{
+        console.log(err);
+      }
+  
+      );
+    }
+    else{
+      this.bool_insert = true;
     }
 
-    );
    }
 
    /**

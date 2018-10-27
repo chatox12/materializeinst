@@ -9,9 +9,7 @@
         Nuevo Cobro
       </button>
 
-      <button class="btn btn-info" (click)='function_mostar(3)'>
-        Colegiatura
-      </button>
+
   </div>  
 <br>
 
@@ -25,14 +23,14 @@
             <th>Orden</th>
             <th>nombre</th>
             <th>cantidad cobro</th>
-            <th>Realizar Cobro</th>
+            <th>Actualizar</th>
             <th>Eliminar</th>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>cobro 1</td>
-            <td>Q. 100.00</td>
-            <td><button class="btn btn-info" data-toggle="modal" data-target=".bd_cobros">cobrar</button></td>
+          <tr *ngFor='let pagos of load_data.pagos; let i = index'>
+            <td>{{i+1}}</td>
+            <td>{{pagos.com_nombre_pago}}</td>
+            <td>{{pagos.cantidad_pago}}</td>
+            <td><button class="btn btn-info" data-toggle="modal" data-target=".bd_cobros" (click)='function_cobro_nuevo(pagos.id_pagos, pagos.com_nombre_pago, pagos.cantidad_pago)'>Actualizar</button></td>
             <td><button class="btn btn-danger" data-toggle="modal" data-target=".bd_Eliminarcobros">Eliminar</button></td>
           </tr>
         </table>
@@ -45,6 +43,7 @@
         <div class="col-md-12">
             <h5>Cobro Nuevo</h5>     
             <hr>
+
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Nombre</span>
               <input type="text" class="form-control" placeholder="Ingrese el Nombre del cobro" aria-describedby="basic-addon1" name='pago' ngModel required>
@@ -55,8 +54,8 @@
               <input type="number" class="form-control" min="0" required name="costo" ngModel>
             </div>
             <br>
-            <div class="alert alert-danger" role="alert">
-                <strong>Error. </strong> Algo a Salido mal
+            <div class="alert alert-danger" role="alert" *ngIf='bool_save == true'>
+                <strong>Error. </strong> debe agregar un nombre y un costo
             </div>
             <button class="btn btn-success">
               Agregar Cobro
@@ -68,47 +67,6 @@
     <br><br>  
   </div>
 
-
-    <!--cobro de colegiatura-->  
-  <div class="row" *ngIf ='pago_colegiatura == true'>
-    <div class="col-md-12">
-        <h5>Cobro Colegiatura</h5>
-        <hr>
-        <div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Buscar Alumno</span>
-          <input type="text" class="form-control" placeholder="Ingrese el Nombre del Alumno" aria-describedby="basic-addon1">
-        </div>
-        <div class="alert alert-danger" role="alert">
-            <strong>Error. </strong> no hay nombres
-        </div>
-        <div class="input-group">
-          <span class="input-group-addon">Q.</span>
-          <input type="text" class="form-control" placeholder="Seleccionar de la tabla cobros">
-        </div>
-          <br>
-        <div class="input-group">
-          <span class="input-group-addon">Mes</span>
-          <select name="" id="" class="form-control">
-            <option value="0">Seleccione un Mes</option>
-            <option value="1">Enero</option>
-            <option value="2">Febrero</option>
-            <option value="3">Marzo</option>
-            <option value="4">Abril</option>
-            <option value="5">Mayo</option>
-            <option value="6">Junio</option>
-            <option value="7">Julio</option>
-            <option value="8">Agosto</option>
-            <option value="9">Septiembre</option>
-            <option value="10">Octubre</option>
-          </select>
-        </div>
-        <br>
-        <button class="btn btn-success">
-          Agregar Cobro
-        </button>
-        
-    </div>
-  </div>
 <br><br>
 </div>
 
@@ -129,31 +87,28 @@
           </button>
         </div>
         <div class="modal-body">
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Buscar Alumno</span>
-                <input type="text" class="form-control" placeholder="Ingrese el Nombre del Alumno" aria-describedby="basic-addon1">
-              </div>
-              <div class="alert alert-danger" role="alert">
-                  <strong>Error. </strong> no hay nombres
-              </div>
-              
+
               <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Nombre del Cobro</span>
-                <input type="text" class="form-control" placeholder="Nombre del cobro" aria-describedby="basic-addon1" disabled>
-              </div>
+                  <span class="input-group-addon" id="basic-addon1">Nombre del Cobro</span>
+                  <input type="text" value={{nombre_pago}} class="form-control" placeholder="Nombre del cobro" aria-describedby="basic-addon1" #pago>
+                </div>
+                  <br>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1">Cantidad Cobro</span>
+                  <input type="text" value={{cantidad_pago}} class="form-control"  aria-describedby="basic-addon1" name='costo' ngModel #cobro>
+                </div>
                 <br>
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Cantidad Cobro</span>
-                <input type="text" class="form-control" placeholder="100.00" aria-describedby="basic-addon1" disabled>
-              </div>
-              <br>
-              <button class="btn btn-success">
-                Realizar cobro
-              </button>
-      
-              <button class="btn btn-danger" data-dismiss="modal">
-                cancelar
-              </button>
+                <div *ngIf='bool_save == true'>
+                  no save
+                </div>
+                <button class="btn btn-success" (click)='function_update(pago, cobro)'>
+                  Actualizar
+                </button>
+        
+                <button class="btn btn-danger" data-dismiss="modal">
+                  cancelar
+                </button>
+
         </div>
 
     </div>

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UsuarioAlumnoComponent } from './usuario-alumno.component';
-import { AlumnoGuard } from '../alumno.guard';
+import { CatedraticoComponent } from './catedratico.component';
+import { CatedraticoGuard } from '../catedratico.guard';
 
 const routes: Routes = [
     {
         path: '',
-        canActivate: [AlumnoGuard ],
-        component: UsuarioAlumnoComponent
+        canActivate: [CatedraticoGuard],
+        component: CatedraticoComponent
     }
 ];
 
@@ -17,4 +17,4 @@ const routes: Routes = [
 })
 
 
-export class UsuarioAlumnoRoutingModule {}
+export class CatedraticoRoutingModule {}

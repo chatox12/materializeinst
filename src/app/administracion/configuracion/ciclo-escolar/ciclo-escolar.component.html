@@ -35,8 +35,14 @@
   <div *ngIf='new_ciclo == true'>
     <form #save='ngForm' (ngSubmit)='function_save(save)'>
         <div class="col-md-6">
-            <label for=""><b>Nombre</b></label>
-            <input type="text" class="form-control" name="nombre" ngModel required />
+            <div class="input-group">
+              <span class="input-group-addon">*</span>
+              <input type="number" class="form-control" min="0" required name="nombre" ngModel>
+            </div>
+        
+          </div><br>
+          <div class="alert alert-danger" role="alert" *ngIf='bool_insert == true'>
+              <strong>Error. </strong> el campo con * son necesarios
           </div>
           <br>
           <button class="btn btn-success" type="submit" (disable)='form.invalid'>
