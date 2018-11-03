@@ -19,7 +19,7 @@ const httpOptions = {
 })
 export class PersonalComponent implements OnInit {
  //cargar la api
- load_api = 'http://localhost:90/api/';
+load_api:string = 'http://tmyggwro.lucusvirtual.es/api/';
  varasig:number = 0;
  varcursoasig:number = 0;
 
@@ -329,14 +329,11 @@ function_asig_course(){
 
 
 convert() {
-
+  var imgData = '../../assets/logo.png'
   var doc = new jsPDF('landscape','mm', 'letter');
-  doc.setFontSize(14)
-  doc.text(15,20,'logo');
-  doc.text(35, 15, 'Instituto Basico Por Cooperativa \"Lic. Angel Guillermo Arreaga Barrios\", San Antonio Sac.')
-
+    doc.addImage(imgData, 'PNG', 80, 0, 100, 30)
   doc.setFontSize(12)
-  doc.text(35, 25, 'Listado de Personal')
+  doc.text(35, 40, 'Listado de Personal')
 
 
   var col = ["Nombre", "Telefono Celular", "Telefono de casa", "Cargo"];
@@ -354,7 +351,7 @@ itemNew.forEach(element => {
 });
 
   doc.autoTable(col, rows, {
-    startY: 30
+    startY: 45
   });
   //doc.save('personal.pdf');
    /**para mostar los en el propio navegador */

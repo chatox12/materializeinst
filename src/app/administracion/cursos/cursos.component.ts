@@ -66,7 +66,7 @@ export class CursosComponent implements OnInit {
   bool_asig_no_correct:boolean = false;
 
 /**para api */
-load_api:string = 'http://localhost:90/api/';
+load_api:string = 'http://tmyggwro.lucusvirtual.es/api/';
 
   constructor(private http: HttpClient ) {
     this.function_view_component(1);
@@ -272,14 +272,13 @@ function_seleccion_curso_view(id:number){
 
 
 generate_pdf_to_course(){
+  var imgData = '../../assets/logo.png'
 
   var doc = new jsPDF('p','mm', 'letter');
+  doc.addImage(imgData, 'PNG', 50, 0, 100, 30)
   doc.setFontSize(12)
-  doc.text(5,20,'logo');
-  doc.text(15, 15, 'Instituto Basico Por Cooperativa \"Lic. Angel Guillermo Arreaga Barrios\", San Antonio Sac.')
-
   doc.setFontSize(12)
-  doc.text(35, 25, 'Listado de Cursos')
+  doc.text(35, 35, 'Listado de Cursos')
 
 
   var col = ["Orden", "Nombre del Curso"];
@@ -297,7 +296,7 @@ itemNew.forEach(element => {
 });
 
   doc.autoTable(col, rows, {
-    startY: 30
+    startY: 40
   });
   //para que se guarde automaticamente
   //doc.save('Cursos1.pdf');
@@ -323,13 +322,13 @@ open_data_uri_window(a);
 
 
 generate_pdf_to_grade(){
+  var imgData = '../../assets/logo.png'
   var doc = new jsPDF('p','mm', 'letter');
-  doc.setFontSize(12)
-  doc.text(5,20,'logo');
-  doc.text(20, 15, 'Instituto Basico Por Cooperativa \"Lic. Angel Guillermo Arreaga Barrios\", San Antonio Sac.')
+  doc.addImage(imgData, 'PNG', 50, 0, 100, 30)
 
   doc.setFontSize(12)
-  doc.text(35, 25, 'Listado de Cursos')
+  doc.setFontSize(12)
+  doc.text(35, 40, 'Listado de Cursos')
 
 
   var col = ["Nombre Curso", "grado"];
@@ -347,7 +346,7 @@ itemNew.forEach(element => {
 });
 
   doc.autoTable(col, rows, {
-    startY: 30
+    startY: 45
   });
 
   //doc.save('Cursos.pdf');

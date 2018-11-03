@@ -9,7 +9,7 @@ declare var $;
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  load_api:string = 'http://localhost:90/api/';
+load_api:string = 'http://tmyggwro.lucusvirtual.es/api/';
 
   nombre_profesor:string = '';
   id_profresor:number = 0;

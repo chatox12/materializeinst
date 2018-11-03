@@ -21,7 +21,7 @@ const httpOptions = {
 })
 export class NotasComponent implements OnInit {
   /**load api */
-  load_api: string = 'http://localhost:90/api/';
+load_api:string = 'http://tmyggwro.lucusvirtual.es/api/';
   load_data: any = {};
   load_data_cursos:any = {};
   //variables para la insercion
@@ -292,13 +292,12 @@ this.function_generate_pdf_print();
 }
 
 function_generate_pdf_print(){
+  var imgData = '../../assets/logo.png'
   var doc = new jsPDF('p','mm', 'letter');
-  doc.setFontSize(12)
-  doc.text(5,20,'logo');
-  doc.text(15, 15, 'Instituto Basico Por Cooperativa \"Lic. Angel Guillermo Arreaga Barrios\", San Antonio Sac.')
+  doc.addImage(imgData, 'PNG', 50, 0, 100, 30)
 
   doc.setFontSize(12)
-  doc.text(35, 25, 'Listado de notas')
+  doc.text(35, 40, 'Listado de notas')
 
 
 
@@ -318,7 +317,7 @@ itemNew.forEach(element => {
 });
 
   doc.autoTable(col, rows, {
-    startY: 50
+    startY: 45
   });
   //para que se guarde automaticamente
   //doc.save('Cursos1.pdf');

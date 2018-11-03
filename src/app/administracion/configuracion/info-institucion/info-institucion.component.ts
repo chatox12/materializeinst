@@ -29,7 +29,7 @@ export class InfoInstitucionComponent implements OnInit {
   load_id_grado:any = {};
   id_curso:number = 0;
   id_unidad:number = 0;
-load_api='http://localhost:90/api/';
+load_api:string = 'http://tmyggwro.lucusvirtual.es/api/';
 load_data:any = [];
 nombre:string;
   mostrar_info:string = null;
@@ -181,7 +181,7 @@ nombre:string;
 
 
     }
-  
+
 
 
   ngOnInit() {

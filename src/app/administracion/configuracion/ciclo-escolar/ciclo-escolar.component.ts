@@ -15,13 +15,15 @@ const httpOptions = {
   styleUrls: ['./ciclo-escolar.component.css']
 })
 export class CicloEscolarComponent implements OnInit {
+load_api:string = 'http://tmyggwro.lucusvirtual.es/api/';
+
   /**
    * comoplete data of insert
    */
   bool_insert:boolean = false;
 
   /**
-   * variables a utilizar 
+   * variables a utilizar
    */
   load_data: any = {};
   error_load:boolean = false;
@@ -38,25 +40,25 @@ export class CicloEscolarComponent implements OnInit {
   new_ciclo:boolean = false;
 
   constructor(private http: HttpClient ) {
-    this.function_view_components(1);  
+    this.function_view_components(1);
 
    }
 
    /**
-    * para ver componenes de inicio 
+    * para ver componenes de inicio
     * y para cargar los datos
     */
   function_view_components(seleccion:number){
 
     switch(seleccion){
-      case 1: 
+      case 1:
       this.Ver_todo = true;
-      this.new_ciclo = false;  
+      this.new_ciclo = false;
       setTimeout(function(){
         $(function(){
             $('#example').DataTable();
           });
-      },1000);  
+      },1000);
 
       this.function_load_data();
       break;
@@ -73,7 +75,7 @@ export class CicloEscolarComponent implements OnInit {
         $(function(){
             $('#example').DataTable();
           });
-      },1000);  
+      },1000);
 
       this.function_load_data();
       break;
@@ -83,11 +85,11 @@ export class CicloEscolarComponent implements OnInit {
 
 
   /**
-   * funcion para cargar los datos 
+   * funcion para cargar los datos
    */
 
    function_load_data(){
-     this.http.get('http://localhost:90/api/ciclo').subscribe(
+     this.http.get(this.load_api+'ciclo').subscribe(
        data=>{
          this.load_data = data;
        },
@@ -107,8 +109,8 @@ export class CicloEscolarComponent implements OnInit {
     if(forms.value.nombre == null){
       const parametros = new HttpParams()
       .set('nombre', forms.value.nombre);
-  
-      this.http.post('http://localhost:90/api/ciclo',parametros,httpOptions).subscribe(
+
+      this.http.post(this.load_api+'ciclo',parametros,httpOptions).subscribe(
       data=>{
         alert("Ciclo Escolar Creado Correctamente");
         this.function_view_components(1);
@@ -116,7 +118,7 @@ export class CicloEscolarComponent implements OnInit {
       err =>{
         console.log(err);
       }
-  
+
       );
     }
     else{
@@ -132,7 +134,7 @@ export class CicloEscolarComponent implements OnInit {
     const parametros = new HttpParams()
     .set('nombre', forms.value.nombre);
 
-    this.http.put('http://localhost:90/api/ciclo/'+this.id,parametros,httpOptions).subscribe(
+    this.http.put(this.load_api+'ciclo'+this.id,parametros,httpOptions).subscribe(
     data=>{
       alert("Ciclo Escolar actualizado Correctamente");
       this.function_view_components(1);

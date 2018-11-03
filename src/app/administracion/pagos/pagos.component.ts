@@ -23,7 +23,7 @@ export class PagosComponent implements OnInit {
   /**
    * load api
    */
-  load_api:string = 'http://localhost:90/api/';
+load_api:string = 'http://tmyggwro.lucusvirtual.es/api/';
   load_data: any = {};
   correct_load: boolean = false;
   bool_save:boolean = false;
@@ -42,19 +42,19 @@ export class PagosComponent implements OnInit {
    }
 
    /**
-    * funciones para mostrar u ocultar los elementos 
+    * funciones para mostrar u ocultar los elementos
     */
-//cobros disponibles 
+//cobros disponibles
     function_mostar(mostar:number){
       if(mostar == 1){
         this.cobro_disponible = true;
         this.nuevo_cobro = false;
         this.pago_colegiatura  = false;
-        
+
         if(this.correct_load == false){
           this.function_load_data();
         }
-  
+
 
       }
       else
@@ -63,7 +63,7 @@ export class PagosComponent implements OnInit {
         this.nuevo_cobro = true;
         this.pago_colegiatura  = false;
       }
-      else 
+      else
       if(mostar == 3){
         this.cobro_disponible = false;
         this.nuevo_cobro = false;
@@ -91,7 +91,7 @@ export class PagosComponent implements OnInit {
       }
     );
   }
-  
+
 
 
   function_save(forms: NgForm){
@@ -102,20 +102,20 @@ export class PagosComponent implements OnInit {
       const parametros = new HttpParams()
       .set('nombre', forms.value.pago)
       .set('cantidad', forms.value.costo );
-  
+
   console.log(parametros);
-  
+
       this.http.post(this.load_api+'pagos',parametros,httpOptions).subscribe(
       data=>{
         alert("cobro Agregado Correctamente");
         this.correct_load = false;
         this.function_mostar(1);
-  
+
       },
       err =>{
         console.log(err);
       }
-   
+
       );
     }
     else{
@@ -135,20 +135,20 @@ export class PagosComponent implements OnInit {
       const parametros = new HttpParams()
       .set('nombre', pago.value)
       .set('cantidad',costo.value );
-  
+
   console.log(parametros);
-  
+
       this.http.put(this.load_api+'pagos/'+this.id_pagos,parametros,httpOptions).subscribe(
       data=>{
         alert("Cobro Modificado Correctamente");
         this.correct_load = false;
         this.function_mostar(1);
-  
+
       },
       err =>{
         console.log(err);
       }
-   
+
       );
     }
     else{

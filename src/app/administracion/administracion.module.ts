@@ -8,6 +8,8 @@ import { AdministracionRoutingModule } from './administracion-routing.module';
 import { AdministracionComponent } from './administracion.component';
 import { SidebarComponent } from './componets/sidebar/sidebar.component';
 import { NavbarComponent } from './componets/navbar/navbar.component';
+import { SeccionComponent } from './seccion/seccion.component';
+
 
 import { AdminguardGuard } from '../adminguard.guard';
 

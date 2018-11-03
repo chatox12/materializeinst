@@ -1,0 +1,11 @@
+.logo{
+text-align: center;
+}
+
+.logo h5{
+  font-size: 2.4em;
+  font-family: serif;
+  margin-bottom: 50px;
+  font-style: oblique;
+  font-weight: bold;
+}

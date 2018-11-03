@@ -20,7 +20,7 @@ export class AlumnosComponent implements OnInit {
 
   /**
    * para uso del api*/
-  load_api: string = 'http://localhost:90/api/';
+load_api:string = 'http://tmyggwro.lucusvirtual.es/api/';
   /**
    * variables para comprobar que se mostrara
   */
@@ -481,13 +481,13 @@ open_data_uri_window(a);
 /**imprimir todos los alumnos */
 id_pdf:number = 1;
   imprimir_alumnos(){
+    var imgData = '../../assets/logo.png'
     var doc = new jsPDF('p','mm', 'letter');
-    doc.setFontSize(12)
-    doc.text(5,20,'logo');
-    doc.text(15, 15, 'Instituto Basico Por Cooperativa \"Lic. Angel Guillermo Arreaga Barrios\", San Antonio Sac.')
+    doc.addImage(imgData, 'PNG', 50, 0, 100, 30)
+
 
     doc.setFontSize(12)
-    doc.text(35, 25, 'Listado de Cursos')
+    doc.text(35, 40, 'Listado de alumnos')
 
 
     var col = ["Orden", "Nombre Completo", "Grado", "Seccion","Codigo Mineduc"];
@@ -506,7 +506,7 @@ id_pdf:number = 1;
   });
 
     doc.autoTable(col, rows, {
-      startY: 30
+      startY: 45
     });
     //para que se guarde automaticamente
     //doc.save('Cursos1.pdf');

@@ -18,7 +18,8 @@ const routes: Routes = [{
         {path: 'alumnos', loadChildren: './usuarios/alumnos/alumnos.module#AlumnosModule'},
         {path: 'grado', loadChildren: './configuracion/grado/grado.module#GradoModule'},
         {path: 'personal', loadChildren: './personal/personal.module#PersonalModule'},
-        {path: 'seccion', loadChildren: './configuracion/seccion/seccion.module#SeccionModule'}
+        {path: 'seccion', loadChildren: './configuracion/seccion/seccion.module#SeccionModule'},
+        { path: '**', redirectTo: 'index', pathMatch: 'full' },
     ]
 }
 ];

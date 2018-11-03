@@ -14,7 +14,7 @@ const httpOptions = {
   styleUrls: ['./usuario-alumno.component.css']
 })
 export class UsuarioAlumnoComponent implements OnInit {
-  load_api:string = 'http://localhost:90/api/';
+load_api:string = 'http://tmyggwro.lucusvirtual.es/api/';
 load_data:any = {};
 nombre_usuario: string = '';
 id_alumno: number = 0;

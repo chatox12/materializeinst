@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 /**
  * load api
  */
-load_api:string = 'http://localhost:90/api/';
+load_api:string = 'http://tmyggwro.lucusvirtual.es/api/';
 bool_login: boolean = false;
 bool_vacio: boolean = false;
 data_sto:any = [];
