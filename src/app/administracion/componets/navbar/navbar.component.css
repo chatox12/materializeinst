@@ -1,8 +1,0 @@
-.usuario_left{
-    margin-left: 300px;
-}
-@media only screen and (max-width: 990px) {
-    .usuario_left{
-        margin-left: 0px;
-    }
-}

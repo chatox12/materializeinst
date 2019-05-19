@@ -24,7 +24,7 @@
             <div class="input-group">
               <span class="input-group-addon">*</span>
               <input type="text" class="form-control" required name="pnombre" ngModel>
-            </div>  
+            </div>
         </div>
 
           <div class="col-md-4">
@@ -33,7 +33,7 @@
               <span class="input-group-addon">*</span>
                 <input type="text" class="form-control" required name="snombre" ngModel>
             </div>
-            
+
           </div>
 
           <div class="col-md-4">
@@ -48,7 +48,7 @@
                 <span class="input-group-addon" >*</span>
                 <input type="text" class="form-control" name="papellido" ngModel>
             </div>
- 
+
           </div>
 
           <div class="col-md-4">
@@ -68,7 +68,7 @@
           <div class="col-md-4">
             <label><b>Edad</b></label>
             <div class="input-group">
-              <span class="input-group-addon">*</span>  
+              <span class="input-group-addon">*</span>
               <input type="number" min="18" class="form-control" name="edad" ngModel>
             </div>
           </div>
@@ -111,7 +111,7 @@
                         <select name="" id="" class="form-control" (change)='function_select_cargo(select_car.value)' #select_car>
                             <option value="0">Seleccione</option>
                             <option value="1">Director</option>
-                            <option value="2">Profesor</option>
+                            <option value="2">Catedratico</option>
                             <option value="3">Secretario/a</option>
                             <option value="4">Tesorero/a</option>
                             <option value="5">Operativo</option>
@@ -127,7 +127,7 @@
         <strong>Error. </strong> el campo con * son necesarios
     </div>
     <br>
-    <button class="btn btn-success"> 
+    <button class="btn btn-success">
         Agregar
       </button>
       <button class="btn btn-danger">
@@ -145,7 +145,7 @@
           Generar PDF
       </button>
 
-      <br><br> 
+      <br><br>
     <table class="table" id="myTable" *ngIf='bool_update == false'>
       <tr>
 
@@ -156,11 +156,10 @@
           telefono celular
         </th>
         <th>
-          telefono de casa 
+          telefono de casa
         </th>
         <th>Cargo</th>
         <th>Actualizar</th>
-        <th>Desactivar</th>
       </tr>
       <tr *ngFor='let personal of load_data.profesor'>
         <td>{{personal.pnombre}} {{personal.snombre}} {{personal.tnombre}} {{personal.papellido}} {{personal.sapellido}} {{personal.tapellido}} </td>
@@ -168,7 +167,6 @@
         <td>{{personal.domiciliar}}</td>
         <td>{{personal.cargo}}</td>
         <td><button class="btn btn-success" (click)='function_obtener_id(personal.id)'>Actualizar</button></td>
-        <td><button class="btn btn-danger" (click)='function_desactivar_usuario(personal.id)'>Desactivar</button></td>
       </tr>
     </table>
 
@@ -186,9 +184,9 @@
                         <span class="input-group-addon">*</span>
                         <input type="text" class="form-control" value={{profesor.com_primer_nombre}} #pnombre >
                     </div>
-                    
+
                   </div>
-        
+
                   <div class="col-md-4">
                     <label><b>Segundo Nombre</b></label>
                     <div class="input-group">
@@ -197,7 +195,7 @@
                     </div>
 
                   </div>
-        
+
                   <div class="col-md-4">
                     <label><b>Tercer Nombre</b></label>
                     <input type="text" class="form-control" value={{profesor.com_tercer_nombre}} #tnombre >
@@ -211,7 +209,7 @@
                         <input type="text" class="form-control" value={{profesor.com_primer_apellido}} #papellido>
                     </div>
                   </div>
-        
+
                   <div class="col-md-4">
                     <label><b>Segundo Apellido</b></label>
                     <div class="input-group">
@@ -219,7 +217,7 @@
                     <input type="text" class="form-control" value={{profesor.com_segundo_apellido}} #sapellido >
                     </div>
                   </div>
-        
+
                   <div class="col-md-4">
                     <label><b>Tercer Apellido</b></label>
                     <input type="text" class="form-control" value={{profesor.com_tercer_apellido}} #tapellido>
@@ -294,7 +292,7 @@
             </div>
 
 
-      
+
 
     </div>
   </div>
@@ -345,13 +343,13 @@
                   <button class="btn btn-success" (click)='function_asig_course()'>
                     Asignar
                   </button>
-          
+
                   <button class="btn btn-danger" data-dismiss="modal">
                     cancelar
                   </button>
-  
+
           </div>
-  
+
       </div>
     </div>
   </div>
@@ -374,14 +372,14 @@
     <th>Nombre del Curso</th>
     <th>desasignar</th>
   </tr>
-  <tr *ngFor='let cat of load_cursos_cat1.corse'>
+  <tr *ngFor='let cat of load_cursos_cat1.curso'>
     <td>{{cat.curso}}</td>
-    <td><button class="btn btn-danger">Desasignar</button> </td>
+    <td><button class="btn btn-danger" (click)='function_desasignar_curso(cat.asignacion)'>Desasignar</button> </td>
   </tr>
 </table>
-  
+
           </div>
-  
+
       </div>
     </div>
   </div>

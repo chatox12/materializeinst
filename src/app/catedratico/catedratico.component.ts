@@ -321,9 +321,21 @@ this.function_generate_pdf_print();
 
 function_generate_pdf_print(){
 
-  var imgData = '../../assets/logo.png'
   var doc = new jsPDF('p','mm', 'letter');
-  doc.addImage(imgData, 'PNG', 50, 0, 100, 30)
+  doc.setFontSize(40)
+  doc.setFont('times')
+  doc.setFontType('italic')
+  doc.text(90, 15, 'I.B.S.A.S')
+  doc.setFontSize(12)
+  doc.text(75, 20, 'Lic. "Angel Guillermo Arreaga Barrios"')
+  doc.setFontSize(12)
+  doc.text(75, 25, 'San Antonio Sacatépequez, San Marcos')
+  doc.setFontSize(12)
+  doc.text(90, 30, 'Tel. 5769 1917')
+  doc.setFontSize(12)
+
+
+
 
   doc.setFontSize(12)
   doc.text(35, 40, 'Listado de notas')

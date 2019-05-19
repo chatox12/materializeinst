@@ -10,7 +10,7 @@
                     <label>Usuario</label>
                     <input type="text" class="form-control" placeholder="Ingrese su usuario" name="usuario" ngModel required>
                   </div>
-            
+
                 <div class="form-group">
                   <label>Contraseña</label>
                   <input type="password" class="form-control" placeholder="Ingrese su contraseña" name="password" ngModel required>
@@ -19,17 +19,21 @@
                   <div class="alert alert-danger" role="alert" *ngIf='bool_login == true'>
                     usuario o contraseña incorrectos
                   </div>
-                
+
                   <div class="alert alert-danger" role="alert" *ngIf='bool_vacio == true'>
                       debe de ingresar un usuario o contraseña
                   </div>
-                
+
                 <button class="center_button btn btn-success ">
                     Ingresar
-                </button>                    
-                
+                </button>
+
               </form>
               </div>
         </div>
   </div>
 </div>
+<footer class="footer">
+Desarrollado Por: Mario Alfredo Gómez Cardona <br>
+Universidad Mariano Galvez de Guatemala. <br>
+</footer>

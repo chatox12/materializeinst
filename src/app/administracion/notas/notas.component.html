@@ -8,7 +8,7 @@
   <div class="row">
     <!--Seleccionar Grado-->
     <div class="col-md-4">
-      <select class="form-control"  (change)='Fuction_seleccion_grado(valor.value)' #valor ngModel>
+      <select class="form-control"  (change)='Fuction_seleccion_grado(valor_grado.value)' #valor_grado>
         <option value="0">Seleccione un Grado</option>
         <option value="1">Primero</option>
         <option value="2">Segundo</option>
@@ -24,40 +24,54 @@
         <option value="2">B</option>
       </select>
     </div>
-  </div>
-    <div class="alert alert-danger" role="alert" *ngIf='Seleccion_seccion == false &&  Seleccion_grado == false '>
-      <strong>Antes de Iniciar</strong> Seleccione un Grado y una seccion
+
+    <div class="col-md-4">
+      <select class=" form-control"  (click)='function_select_unidad(valor.value)' #valor >
+        <option value="0">Seleccione la unidad</option>
+        <option value="1">I</option>
+        <option value="2">II</option>
+        <option value="3">III</option>
+        <option value="4">IV</option>
+      </select>
     </div>
+<br><br>
+    <div class="col-md-4">
+      <select class="form-control"  (change)='function_select_curso(curso.value)' [disabled]='bool_d_curso == true' #curso>
+        <option value="0">seleccione un curso</option>
+        <option *ngFor='let cursos of load_data_cursos.cursos' value={{cursos.id}}>{{cursos.com_nombre}}</option>
+      </select>
+    </div>
+
+    <button class="btn btn-danger" (click)='function_cambiar()' *ngIf='bool_d_curso == true && bool_d_grado == true && bool_d_seccion == true && bool_d_unidad == true'>
+      cambiar
+    </button>
+  </div>
+
+<br>
+  <div class="alert alert-danger" *ngIf='bool_d_curso == false'>
+    <strong >*</strong>SELECCIONE UN CURSO <br>
+    </div>
+
+    <div class="alert alert-danger" *ngIf='bool_d_grado == false'>
+      <strong>*</strong>SELECCIONE UN GRADO <br>
+    </div>
+
+    <div class="alert alert-danger" *ngIf='bool_d_seccion == false'>
+      <strong>*</strong>SELECCIONE UNA SECCION <br>
+    </div>
+
+    <div class="alert alert-danger" *ngIf='bool_d_unidad == false'>
+      <strong>*</strong>SELECCIONE UNA UNIDAD <br>
+    </div>
+
+
     <!--Agregar Notas-->
-  <div *ngIf='Seleccion_grado == true && Seleccion_seccion == true'>
+  <div *ngIf='bool_d_curso == true && bool_d_grado == true && bool_d_seccion == true && bool_d_unidad == true'>
 
 <!--Agregar Nueva nota y unidad-->
     <div>
       <br>
       <div class="row">
-        <div class="col-md-4">
-          <select class=" form-control"  (click)='function_select_unidad(valor.value)' #valor >
-            <option value="0">Seleccione la unidad</option>
-            <option value="1">I</option>
-            <option value="2">II</option>
-            <option value="3">III</option>
-            <option value="4">IV</option>
-          </select>
-        </div>
-
-        <div class="col-md-4">
-          <select class="form-control"  (change)='function_select_curso(curso.value)' [disabled]='bool_d_curso == true' #curso>
-            <option value="0">seleccione un curso</option>
-            <option *ngFor='let cursos of load_data_cursos.cursos' value={{cursos.id}}>{{cursos.com_nombre}}</option>
-          </select>
-        </div>
-
-          &nbsp;
-          <button class="btn btn-danger" (click)='function_cambiar()'>
-            cambiar
-          </button>
-
-          <br><br>
           <div class=" col-md-12 row">
               <button class="btn btn-success" (click)='Mostrar_inicio(true);function_select_view(1)'>Ingreso de notas</button>
               <div class="col-md-1"></div>
@@ -69,6 +83,8 @@
     </div>
 
   </div>
+
+
 <!--para las notas-->
   <div *ngIf = 'bool_ingreso == true'>
       <div *ngIf='bool_load_table == true'>
@@ -93,7 +109,7 @@
   </div>
 
   <!--para generar PDF o EXCEL-->
-  <div *ngIf='bool_reportes == true'>
+  <div *ngIf='bool_reportes == true' class="reportes">
 <button class="btn btn-outline-success" (click)='function_generate_pdf()'>
   PDF
 </button>

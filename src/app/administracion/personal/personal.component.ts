@@ -10,7 +10,9 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'})
 }
 
-
+const httpOptions1 = {
+  headers: new HttpHeaders({'Content-TypeAccess-Control-Allow-Origin':'*'})
+}
 
 @Component({
   selector: 'app-personal',
@@ -48,6 +50,7 @@ load_api:string = 'http://tmyggwro.lucusvirtual.es/api/';
   id:number = 0;
 
 
+  id_desasignar: number = 0;
   /**
    * variables para los select de estado y cargo
    */
@@ -287,10 +290,10 @@ function_sele_asig(id:number){
 function_cursos_catedratico(id:number){
   this.http.get(this.load_api+'prof_to_curso/'+id).subscribe(
     data=>{
-
+      this.id_desasignar = id;
       this.load_cursos_cat1 = data;
 
-console.log(this.load_cursos_cat1.corse)
+console.log(this.load_cursos_cat1.curso)
     },
     err =>{
 
@@ -329,10 +332,22 @@ function_asig_course(){
 
 
 convert() {
-  var imgData = '../../assets/logo.png'
   var doc = new jsPDF('landscape','mm', 'letter');
-    doc.addImage(imgData, 'PNG', 80, 0, 100, 30)
+  doc.setFontSize(40)
+  doc.setFont('times')
+  doc.setFontType('italic')
+  doc.text(90, 15, 'I.B.S.A.S')
   doc.setFontSize(12)
+  doc.text(75, 20, 'Lic. "Angel Guillermo Arreaga Barrios"')
+  doc.setFontSize(12)
+  doc.text(75, 25, 'San Antonio Sacatépequez, San Marcos')
+  doc.setFontSize(12)
+  doc.text(90, 30, 'Tel. 5769 1917')
+  doc.setFontSize(12)
+
+
+
+
   doc.text(35, 40, 'Listado de Personal')
 
 
@@ -377,6 +392,29 @@ function_Salir(){
 }
 
 
+function_desasignar_curso(id:number){
+
+  if(confirm("Desea desasignar el curso")){
+    this.http.delete(this.load_api+'prof_to_curso/'+id, httpOptions1).subscribe(
+    
+      data=>{
+        alert("Desasignacion correcta");
+        location.reload();
+  
+      },
+      err =>{
+        console.log(err);
+      }
+  
+      );
+  }
+  else{
+    console.log('no ingreso');
+  }
+
+  
+  
+  }
 
   ngOnInit() {
   }

@@ -221,8 +221,8 @@ if(forms.value.pnombrea != '' && forms.value.snombrea != '' && forms.value.papel
     .set('direccion', forms.value.direccion )
     .set('telefono', forms.value.telefono )
     .set('parentesco',''+this.id_select_parentesco)
-    .set('usuario', forms.value.codigomine+this.id_ciclo_escolar)
-    .set('password',''+forms.value.codigomine+this.id_ciclo_escolar);
+    .set('usuario', forms.value.codigomine+this.nombre_ciclo)
+    .set('password',''+forms.value.codigomine+this.nombre_ciclo);
 
     this.http.post(this.load_api+'estudiante',parametros,httpOptions).subscribe(
     data=>{
@@ -402,12 +402,24 @@ open_data_uri_window(a);
 
 function_imprimir_colegiatura(){
   var doc = new jsPDF('p','mm', 'letter');
+
+  doc.setFontSize(40)
+  doc.setFont('times')
+  doc.setFontType('italic')
+  doc.text(90, 15, 'I.B.S.A.S')
   doc.setFontSize(12)
-  doc.text(5,20,'logo');
-  doc.text(20, 15, 'Instituto Basico Por Cooperativa \"Lic. Angel Guillermo Arreaga Barrios\", San Antonio Sac.')
+  doc.text(75, 20, 'Lic. "Angel Guillermo Arreaga Barrios"')
+  doc.setFontSize(12)
+  doc.text(75, 25, 'San Antonio Sacatépequez, San Marcos')
+  doc.setFontSize(12)
+  doc.text(90, 30, 'Tel. 5769 1917')
+  doc.setFontSize(12)
+
+
+
 
   doc.setFontSize(12)
-  doc.text(35, 25, 'Comprobante de pago de Colegiatura')
+  doc.text(35, 35, 'Comprobante de pago de Colegiatura')
 
 
 /* The following array of object as response from the API req */
@@ -415,11 +427,11 @@ function_imprimir_colegiatura(){
 var itemNew = this.load_data_imprimir.cobro;
 console.log(itemNew);
     /* X, Y*/
-    doc.text(35, 35, "Nombre del Estudiante: " + itemNew[0].estudiante);
-    doc.text(35, 40, "Nombre del Pago: "+ itemNew[0].nombre);
-    doc.text(35, 45, "Mes cancelado: "+ itemNew[0].mes);
-    doc.text(35, 50, "Cantidad: "+ itemNew[0].total);
-    doc.text(35, 55, "fecha: "+ itemNew[0].fecha_pago);
+    doc.text(35, 40, "Nombre del Estudiante: " + itemNew[0].estudiante);
+    doc.text(35, 45, "Nombre del Pago: "+ itemNew[0].nombre);
+    doc.text(35, 50, "Mes cancelado: "+ itemNew[0].mes);
+    doc.text(35, 55, "Cantidad: "+ itemNew[0].total);
+    doc.text(35, 60, "fecha: "+ itemNew[0].fecha_pago);
 
 
 
@@ -481,9 +493,19 @@ open_data_uri_window(a);
 /**imprimir todos los alumnos */
 id_pdf:number = 1;
   imprimir_alumnos(){
-    var imgData = '../../assets/logo.png'
     var doc = new jsPDF('p','mm', 'letter');
-    doc.addImage(imgData, 'PNG', 50, 0, 100, 30)
+    doc.setFontSize(40)
+    doc.setFont('times')
+    doc.setFontType('italic')
+    doc.text(90, 15, 'I.B.S.A.S')
+    doc.setFontSize(12)
+    doc.text(75, 20, 'Lic. "Angel Guillermo Arreaga Barrios"')
+    doc.setFontSize(12)
+    doc.text(75, 25, 'San Antonio Sacatépequez, San Marcos')
+    doc.setFontSize(12)
+    doc.text(90, 30, 'Tel. 5769 1917')
+    doc.setFontSize(12)
+
 
 
     doc.setFontSize(12)
@@ -549,14 +571,23 @@ this.function_mostar_div(2);
 /*imprimir boleta de inscripcion*/
 imprimir_boleta_inscripcion(){
   var doc = new jsPDF('p','mm', 'letter');
+  doc.setFontSize(40)
+  doc.setFont('times')
+  doc.setFontType('italic')
+  doc.text(90, 15, 'I.B.S.A.S')
   doc.setFontSize(12)
-  doc.text(5,20,'logo');
-  doc.text(15, 15, 'Instituto Basico Por Cooperativa \"Lic. Angel Guillermo Arreaga Barrios\", San Antonio Sac.')
+  doc.text(75, 20, 'Lic. "Angel Guillermo Arreaga Barrios"')
+  doc.setFontSize(12)
+  doc.text(75, 25, 'San Antonio Sacatépequez, San Marcos')
+  doc.setFontSize(12)
+  doc.text(90, 30, 'Tel. 5769 1917')
+  doc.setFontSize(12)
+
 
   doc.setFontSize(12)
-  doc.text(35, 25, 'Listado de Cursos')
-  doc.text(35, 30, this.nombreAlumnoBoleta)
-  doc.text(35, 25, this.nombrePadreBoleta)
+
+  doc.text(35, 35, this.nombreAlumnoBoleta)
+  doc.text(35, 40, this.nombrePadreBoleta)
 
 
 

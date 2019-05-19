@@ -122,15 +122,21 @@ nombre:string;
     generate_pdf_to_course(){
 
       var doc = new jsPDF('p','mm', 'letter');
+      doc.setFontSize(40)
+      doc.setFont('times')
+      doc.setFontType('italic')
+      doc.text(90, 15, 'I.B.S.A.S')
       doc.setFontSize(12)
-      doc.text(5,20,'logo');
-      doc.text(15, 15, 'Instituto Basico Por Cooperativa \"Lic. Angel Guillermo Arreaga Barrios\", San Antonio Sac.')
+      doc.text(75, 20, 'Lic. "Angel Guillermo Arreaga Barrios"')
+      doc.setFontSize(12)
+      doc.text(75, 25, 'San Antonio Sacatépequez, San Marcos')
+      doc.setFontSize(12)
+      doc.text(90, 30, 'Tel. 5769 1917')
+      doc.setFontSize(12)
+
+
 
       doc.setFontSize(12)
-      doc.text(35, 25, 'Listado de notas')
-
-
-
     /* The following array of object as response from the API req */
 
     var itemNew = this.load_data.notas;
@@ -142,12 +148,12 @@ nombre:string;
       this._cursosPDF = element.materia;
     });
     doc.setFontSize(12)
-    doc.text(35, 30, 'Nombre del Alumno:' );
-    doc.text(80, 30, this._nombrePDF );
-    doc.text(35, 35, 'Grado:' );
-    doc.text(80, 35, this._gradoPDF );
-    doc.text(35, 40, 'Seccion:' );
-    doc.text(80, 40, this._seccionPDF );
+    doc.text(35, 40, 'Nombre del Alumno:' );
+    doc.text(80, 40, this._nombrePDF );
+    doc.text(35, 45, 'Grado:' );
+    doc.text(80, 45, this._gradoPDF );
+    doc.text(35, 50, 'Seccion:' );
+    doc.text(80, 50, this._seccionPDF );
 
     var col = [ "Nombre del Curso", "unidad 1", "unidad 2", "unidad 3", "unidad 4", "promedio"];
     var rows = [];
@@ -160,7 +166,7 @@ nombre:string;
     });
 
       doc.autoTable(col, rows, {
-        startY: 50
+        startY: 55
       });
       //para que se guarde automaticamente
       //doc.save('Cursos1.pdf');

@@ -35,8 +35,7 @@ data_sto:any = [];
 
       this.http.post(this.load_api+'login',parametros,httpOptions).subscribe(
       data=>{
-        if(data.valueOf){
-console.log(data);
+        if(data != false){
           this.data_sto = data;
           let personal;
           let alumno;

@@ -292,11 +292,23 @@ this.function_generate_pdf_print();
 }
 
 function_generate_pdf_print(){
-  var imgData = '../../assets/logo.png'
   var doc = new jsPDF('p','mm', 'letter');
-  doc.addImage(imgData, 'PNG', 50, 0, 100, 30)
 
+  doc.setFontSize(40)
+  doc.setFont('times')
+  doc.setFontType('italic')
+  doc.text(90, 15, 'I.B.S.A.S')
   doc.setFontSize(12)
+  doc.text(75, 20, 'Lic. "Angel Guillermo Arreaga Barrios"')
+  doc.setFontSize(12)
+  doc.text(75, 25, 'San Antonio Sacatépequez, San Marcos')
+  doc.setFontSize(12)
+  doc.text(90, 30, 'Tel. 5769 1917')
+  doc.setFontSize(12)
+
+
+
+
   doc.text(35, 40, 'Listado de notas')
 
 
@@ -304,14 +316,14 @@ function_generate_pdf_print(){
 /* The following array of object as response from the API req */
 
 
-var col = [ "Nombre del Alumno", "Grado", "Seccion","Unidad 1","Unidad 2", "Unidad 3", "Unidad 4"];
+var col = [ "Nombre del Alumno", "Grado", "Seccion","Unidad 1","Unidad 2", "Unidad 3", "Unidad 4", "Promedio"];
 var rows = [];
 
 var itemNew = this._loadDataPDF.alumnos;
 
 
 itemNew.forEach(element => {
-  var temp = [element.alumno,element.grado,element.seccion, element.Unidad_1,element.Unidad_2,element.Unidad_3,element.unidad_4];
+  var temp = [element.alumno,element.grado,element.seccion, element.Unidad_1,element.Unidad_2,element.Unidad_3,element.unidad_4, element.promedio];
   rows.push(temp);
 
 });
@@ -351,6 +363,9 @@ generar_excel_todos_alumnos(data: any[], nombre:string){
   const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] } ;
   XLSX.writeFile(workbook, nombre+'.xls', { bookType: 'xls', type: 'buffer' });
 }
+
+/**para desasignar curso */
+
 
 
 
